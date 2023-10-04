@@ -5,6 +5,7 @@ export default function MapSelector () {
     return (
         <Select bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'}>
             <option>전체</option>
+            <option>상관없음</option>
             <option>커스텀</option>
             <option>팩토리</option>
             <option>우드</option>

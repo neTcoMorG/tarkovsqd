@@ -9,6 +9,7 @@ import {
     HStack,
     Button,
   } from '@chakra-ui/react'
+import { DISCORD_LOGIN_URL } from '../application'
 
 export default function LoginModal ({onClose, isOpen, teamModalOpen}) {
 
@@ -27,7 +28,9 @@ export default function LoginModal ({onClose, isOpen, teamModalOpen}) {
                         <Text fontSize={'12px'} textAlign={'center'} color={'#AEAEB0'}>디스코드 계정을 연결하시면<br/> 글 등록 시간과 제한이 줄어요 지금 등록할래요?</Text>
                         <HStack>
                             <Button onClick={afterButton} p={'10px 16px 10px 16px'} color={'white'} fontSize={'14px'} bgColor={'#202020'}>나중에 하기</Button>
-                            <Button p={'10px 16px 10px 16px'} color={'white'} fontSize={'14px'} bgColor={'#827357'}>지금 연동하기</Button>
+                            <Button p={'10px 16px 10px 16px'} color={'white'} fontSize={'14px'} bgColor={'#827357'}
+                                onClick={() => window.location.href = DISCORD_LOGIN_URL}
+                            >지금 연동하기</Button>
                         </HStack>
                     </VStack>
                 </ModalBody>

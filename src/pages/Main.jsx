@@ -14,23 +14,21 @@ import {
     VStack,
     Text,
     useDisclosure
-  } from "@chakra-ui/react";
-  import Header from "../components/Header";
-  import MapSelector from "../components/MapSelector";
-  import RegionSelector from "../components/RegionSelector";
+} from "@chakra-ui/react";
+
+import Header from "../components/Header";
+import MapSelector from "../components/MapSelector";
+import RegionSelector from "../components/RegionSelector";
 import TeamCreateModal from "../components/TeamCreateModal";
-import { useState } from "react";
 import LoginModal from "../components/LoginModal";
 
 export default function Main () {
-
-    const [posts, setPosts] = useState()
 
     const loginModal = useDisclosure()
     const teamModal = useDisclosure()
 
     const openModal = () => {
-        const token = localStorage.getItem('squadToken')
+        const token = localStorage.getItem('squadObject')
 
         if (token === null) {
             loginModal.onOpen()
@@ -62,22 +60,24 @@ export default function Main () {
                         <Th w={'200px'} fontSize={'11px'} color={'#827357'}>맵</Th>
                         <Th w={'210px'} color={'#827357'}>서버</Th>
                         <Th fontSize={'11px'} color={'#827357'}>메모</Th>
+                        <Th fontSize={'11px'} color={'#827357'}>등록 시간</Th>
                     </Tr>
                 </Thead>
                 <Tbody>
                     <Tr fontSize={'12px'} bgColor={'#121211'}>
                         <Td>
                             <HStack spacing={2}>
-                            <Avatar size={'sm'} />
-                            <VStack spacing={0} alignItems={'flex-start'}>
-                                <Text color={'#9a8866'}>윤봉길의도시락</Text>
-                                <Text color={'gray'}>#1234</Text>
-                            </VStack>
+                                <Avatar size={'sm'} />
+                                <VStack spacing={0} alignItems={'flex-start'}>
+                                    <Text color={'#9a8866'}>윤봉길의도시락</Text>
+                                    <Text color={'gray'}>#1234</Text>
+                                </VStack>
                             </HStack>
                         </Td>
                         <Td color={'#AEAEB0'}>전체</Td>
                         <Td color={'#AEAEB0'}>한국</Td>
                         <Td color={'#9a8866'}>뉴비 퀘스트 깨드려요 같이해요~~~</Td>
+                        <Td color={'gray'}>1초전</Td>
                     </Tr>
                 </Tbody>
                 </Table>
