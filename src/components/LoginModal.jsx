@@ -17,7 +17,7 @@ export default function LoginModal ({onClose, isOpen, teamModalOpen}) {
         onClose()
         teamModalOpen()
     }
-
+    
     return (
         <Modal onClose={onClose} isOpen={isOpen} isCentered>
             <ModalOverlay />

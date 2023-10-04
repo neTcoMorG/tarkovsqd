@@ -4,20 +4,53 @@ import { Box } from "@chakra-ui/react";
 import Callback from './pages/Discord'
 import { useEffect, useState } from "react";
 
-import { WEB_SOCKET } from "./application";
+import axios from "axios";
+
+import { API_SERVER, WEB_SOCKET, WEB } from "./application";
+import usePostStore from "./store/usePostStore";
+import useStatusStore from "./store/useStatusStore";
 
 function App() {
   
+  const {setPosts, initPosts} = usePostStore()
+  const {setOnline}           = useStatusStore()
 
+  const sendNoti = (data) => {
+    if (Notification.permission !== 'granted') {
+      return
+    }
+    else {
+        const notification = new Notification(data.memo, {
+            body: '[디스코드] '  + data.nickname + '  ' + '[맵] ' + data.map + '  ' + '[서버] ' + data.server,
+        });
 
+        notification.onclick = function () {
+            window.open(WEB);
+        };
+    }
+  }
+  
   useEffect(() => {
+    if (window.Notification) {
+      Notification.requestPermission();
+    }
+
+    axios.get(API_SERVER + '/post').then(res => {
+      initPosts(res.data.content)
+    })
+
     const ws = new WebSocket(WEB_SOCKET)
     ws.onopen = () => {
       console.log('conneceted!')
     }
 
-    ws.onmessage = (data) => {
-      console.log(data)
+    ws.onmessage = (message) => {
+      const packet = JSON.parse(message.data)
+      if (packet.type === "UPDATE") { 
+        setPosts(packet.data) 
+        sendNoti(packet.data)
+      }
+      if (packet.type === "ONLINE") { setOnline(packet.data) }
     }
 
     return () => {
