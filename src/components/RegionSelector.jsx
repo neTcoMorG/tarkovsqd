@@ -7,9 +7,41 @@ import jp from '../resource/jp.png'
 import rs from '../resource/rs.png'
 
 
-export default function RegionSelector ({setter}) {
+export default function RegionSelector ({setter, disabled=false}) {
+
+    if (disabled) {
+        return (
+            <Select disabled fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} onChange={setter} fontSize={'14px'}>
+                <option value={'한국'}>
+                    <HStack>
+                        <Avatar w={'10px'} h={'10px'} src={kr} />
+                        <Text>한국</Text>
+                    </HStack>
+                </option>
+                <option value={'북미'}>
+                    <HStack>
+                        <Image w={'10px'} h={'10px'} src={us} />
+                        <Text>북미</Text>
+                    </HStack>
+                </option>
+                <option value={'일본'}>
+                    <HStack>
+                        <Image w={'10px'} h={'10px'} src={jp} />
+                        <Text>일본</Text>
+                    </HStack>
+                </option>
+                <option value={'러시아'}>
+                    <HStack>
+                        <Image w={'10px'} h={'10px'} src={rs} />
+                        <Text>러시아</Text>
+                    </HStack>
+                </option>
+            </Select>
+        )
+    }
+
     return (
-        <Select bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} onChange={setter} fontSize={'16px'}>
+        <Select fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} onChange={setter} fontSize={'14px'}>
             <option value={'한국'}>
                 <HStack>
                     <Avatar w={'10px'} h={'10px'} src={kr} />
