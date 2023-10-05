@@ -10,9 +10,10 @@ import { API_SERVER, WEB_SOCKET, WEB } from "./application";
 import usePostStore from "./store/usePostStore";
 import useStatusStore from "./store/useStatusStore";
 
+
 function App() {
   
-  const {setPosts, initPosts} = usePostStore()
+  const {setPosts }           = usePostStore()
   const {setOnline}           = useStatusStore()
 
   const sendNoti = (data) => {
@@ -35,10 +36,6 @@ function App() {
       Notification.requestPermission();
     }
 
-    axios.get(API_SERVER + '/post').then(res => {
-      initPosts(res.data.content)
-    })
-
     const ws = new WebSocket(WEB_SOCKET)
     ws.onopen = () => {
       console.log('conneceted!')
@@ -47,6 +44,7 @@ function App() {
     ws.onmessage = (message) => {
       const packet = JSON.parse(message.data)
       if (packet.type === "UPDATE") { 
+        console.log("UPDATE PACKET TIME:" )
         setPosts(packet.data) 
         sendNoti(packet.data)
       }
@@ -60,7 +58,7 @@ function App() {
   }, [])
 
   return (
-    <Box w={'100%'} bgColor={'black'}>
+    <Box w={'100%'} >
       <Routes>
         <Route path="/"        element={<Main />} />
         <Route path="/discord" element={<Callback />} />

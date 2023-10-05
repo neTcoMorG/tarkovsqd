@@ -1,12 +1,17 @@
 
 import { Box, Container, HStack, Select, Text } from "@chakra-ui/react";
+import { useSearchParams } from "react-router-dom";
+import useFilterStore from "../store/useFilterStore";
 
-export default function MapSelector ({setter, disabled=false}) {
+export default function MapSelector ({setter, isFilter=false}) {
 
-    if (disabled) {
+    const {setMap} = useFilterStore()
+
+    if (!isFilter) {
         return (
-            <Select disabled fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} onChange={setter} fontSize={'14px'}>
-                <option value={null}>전체</option>
+            <Select onChange={setter} fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'}  fontSize={'14px'}>
+                <option value={'맵 선택'}>맵 선택</option>
+                <option value={'전체'}>전체</option>
                 <option value={'커스텀'}>커스텀</option>
                 <option value={'팩토리'}>팩토리</option>
                 <option value={'우드'}>우드</option>
@@ -18,8 +23,9 @@ export default function MapSelector ({setter, disabled=false}) {
     }
 
     return (
-        <Select fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} onChange={setter} fontSize={'14px'}>
-            <option value={null}>전체</option>
+        <Select onChange={(e) => setMap(e.target.value)} fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} fontSize={'14px'}>
+            <option value={'맵 선택'}>맵 선택</option>
+            <option value={'전체'}>전체</option>
             <option value={'커스텀'}>커스텀</option>
             <option value={'팩토리'}>팩토리</option>
             <option value={'우드'}>우드</option>

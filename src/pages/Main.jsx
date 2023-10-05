@@ -29,21 +29,27 @@ import usePostStore from "../store/usePostStore";
 
 import strip from '../resource/strip.png'
 import bg from '../resource/bg.png'
-
 import kr from '../resource/kr.png'
 import us from '../resource/us.png'
 import jp from '../resource/jp.png'
 import rs from '../resource/rs.png'
+import reset from '../resource/reset.svg'
+
+
 import PlayTypeSelector from "../components/PlayTypeSelector";
+import { useEffect } from "react";
+import { API_SERVER } from "../application";
+import axios from "axios";
+import useFilterStore from "../store/useFilterStore";
 
 export default function Main () {
 
     const toast = useToast()
-
     const loginModal = useDisclosure()
     const teamModal = useDisclosure()
 
-    const {posts, setPosts} = usePostStore()
+    const {posts, initPosts}  = usePostStore()  
+    const {map, server} = useFilterStore()
 
     const openModal = () => {
         const token = localStorage.getItem('squadObject')
@@ -67,27 +73,56 @@ export default function Main () {
         catch (error) { alert('클립보드 복사에 실패하였습니다.') }
     };
 
+    const searchQueryGenerator = () => {
+        const query = new URLSearchParams()
+        if (map !== null) {
+            query.append("map", map)
+        }
+        if (server !== null) {
+            query.append("server", server)
+        }
+
+        return query.toString()
+    }
+
+    const onResetFilterClick = () => {
+        axios.get(API_SERVER + '/post').then(res => {
+            initPosts(res.data.content)
+        })
+    }
+
+    useEffect(() => {
+        console.log(API_SERVER + '/post?' + searchQueryGenerator())
+        axios.get(API_SERVER + '/post?' + searchQueryGenerator()).then(res => {
+            initPosts(res.data.content)
+        })
+    }, [map, server])
+
     return (
-    <Box h={'100%'} w={'100%'} bgColor={'black'} backgroundImage={bg} backgroundSize={'cover'} backgroundRepeat={'no-repeat'} backgroundAttachment={'fixed'} pb={20}>
+    <Box w={'100%'} bgColor={'black'} backgroundImage={bg} backgroundSize={'cover'} backgroundRepeat={'no-repeat'} backgroundAttachment={'fixed'} pb={'400px'}>
         <LoginModal onClose={loginModal.onClose} isOpen={loginModal.isOpen} teamModalOpen={teamModal.onOpen} />
         <TeamCreateModal onClose={teamModal.onClose} isOpen={teamModal.isOpen} />
         <Header />
-        <Container maxW={'1200px'} mt={8}>
+        <Container maxW={'1200px'} mt={10}>
             <Box w={'100%'} p={'18px 24px 18px 24px'} bgColor={'#151515'} border={'1px solid #9a886650'}>
                 <VStack alignItems={'flex-start'} spacing={3}>
                     <Text fontSize={'18px'} letterSpacing={'-1px'} fontWeight={'bold'} color={'#9A8866'}>공지사항</Text>
-                    <Text fontSize={'14px'}>
-                        현재 스쿼드는 테스트 단계입니다 <br/>
-                        팀원 모집글 기능을 제외한 모든 기능이 비활성화 되어있습니다. 빠른 시일내에 모든 기능을 제공하도록 하겠습니다 감사합니다<br/>
-                        <span></span> 바랍니다
+                    <Text fontSize={'15px'}>
+                        필터링 기능(맵, 서버)이 추가되었습니다. <br/>
+                        사용자 프로필을 클릭하면 빠르게 디스코드 아이디를 복사할 수 있습니다. <br/>
                     </Text>
                 </VStack>
             </Box>
             <HStack justifyContent={'space-between'} pt={5}>
                 <HStack spacing={4}>
-                    <MapSelector      disabled={true} />
+                    <Tooltip fontSize={'12px'} label={'필터 초기화'}>
+                        <Box bgColor={'#121211'} border={'1px solid #9A8866'} cursor={'pointer'} onClick={onResetFilterClick}>
+                            <Image p={'6px'} src={reset} h={'38px'} w={'39px'} />
+                        </Box>
+                    </Tooltip>
+                    <MapSelector      isFilter={true} />
                     <PlayTypeSelector disabled={true} />
-                    <RegionSelector   disabled={true} />
+                    <RegionSelector   isFilter={true} />
                 </HStack>
                 <Button fontSize={'14px'} bgColor={'#9A8866'} color={'#29241D'} borderRadius={0} fontWeight={'bold'} letterSpacing={'-1px'} onClick={openModal}>팀원 찾기</Button>
             </HStack>
@@ -128,6 +163,8 @@ export default function Main () {
                                     <HStack><Image w={'18px'} h={'18px'} src={jp} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
                                 {p.server === '러시아' && <Td color={'#AEAEB0'}>
                                     <HStack><Image w={'18px'} h={'18px'} src={rs} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
+                                {p.server ===  '상관없음' && <Td color={'#AEAEB0'}>
+                                    <HStack><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
 
                                 <Td wordBreak={'break-all'} pr={10}>
                                     <Text 

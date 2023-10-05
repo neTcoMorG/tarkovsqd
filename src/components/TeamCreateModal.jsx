@@ -28,11 +28,27 @@ export default function TeamCreateModal ({onClose, isOpen}) {
     const toast = useToast()
 
     const [nickname, setNickname] = useState("")
-    const [map, setMap]           = useState('전체')
-    const [server, setServer]     = useState('한국')
+    const [map, setMap]           = useState("")
+    const [server, setServer]     = useState("")
     const [memo, setMemo]         = useState("")
 
     const validate = () => {
+        if (map === "" || map === "맵 선택") {
+            toast({
+                title: '맵을 선택해주세요',
+                status: 'warning'
+            })
+            return false
+        }
+
+        if (server === "" || server === "서버 선택") {
+            toast({
+                title: '서버를 선택해주세요',
+                status: 'warning'
+            })
+            return false
+        }
+
         if (profile === null && nickname === "") {
             toast({
                 title: '디스코드 아이디를 입력해주세요',
@@ -48,13 +64,14 @@ export default function TeamCreateModal ({onClose, isOpen}) {
             })
             return false
         }
+    
         return true
     }
 
     const customClose = () => {
         setNickname('')
-        setMap('전체')
-        setServer('한국')
+        setMap('')
+        setServer('')
         setMemo('')
         onClose()
     }
@@ -72,7 +89,7 @@ export default function TeamCreateModal ({onClose, isOpen}) {
                 nickname,
                 map,
                 server,
-                memo
+                memo,
             }
 
             axios.post(API_SERVER + '/post', JSON.stringify(packet), {headers: {'Content-Type': 'application/json'}})
@@ -106,7 +123,7 @@ export default function TeamCreateModal ({onClose, isOpen}) {
                         <HStack spacing={5}>
                             <FormControl isRequired>
                                 <FormLabel color={'#AEAEB0'} fontSize={'14px'}>맵</FormLabel>
-                                <MapSelector setter={(e) => setMap(e.target.value)} />
+                                <MapSelector setter={(e) => setMap(e.target.value)} /> 
                             </FormControl>
                             <FormControl isRequired>
                                 <FormLabel color={'#AEAEB0'} fontSize={'14px'}>서버</FormLabel>

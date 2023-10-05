@@ -1,71 +1,35 @@
 
-import { Avatar, Box, Container, HStack, Icon, Select, Text, Image } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 
-import kr from '../resource/kr.png'
-import us from '../resource/us.png'
-import jp from '../resource/jp.png'
-import rs from '../resource/rs.png'
+import useFilterStore from "../store/useFilterStore";
 
+export default function RegionSelector ({setter, isFilter=false}) {
 
-export default function RegionSelector ({setter, disabled=false}) {
+    const {setServer} = useFilterStore()
 
-    if (disabled) {
+    if (!isFilter) {
         return (
-            <Select disabled fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} onChange={setter} fontSize={'14px'}>
-                <option value={'한국'}>
-                    <HStack>
-                        <Avatar w={'10px'} h={'10px'} src={kr} />
-                        <Text>한국</Text>
-                    </HStack>
-                </option>
-                <option value={'북미'}>
-                    <HStack>
-                        <Image w={'10px'} h={'10px'} src={us} />
-                        <Text>북미</Text>
-                    </HStack>
-                </option>
-                <option value={'일본'}>
-                    <HStack>
-                        <Image w={'10px'} h={'10px'} src={jp} />
-                        <Text>일본</Text>
-                    </HStack>
-                </option>
-                <option value={'러시아'}>
-                    <HStack>
-                        <Image w={'10px'} h={'10px'} src={rs} />
-                        <Text>러시아</Text>
-                    </HStack>
-                </option>
+            <Select onChange={setter} fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} fontSize={'14px'}>
+                <option value={'서버 선택'}>서버 선택</option>
+                <option value={'상관없음'}>상관없음</option>
+                <option value={'한국'}>한국</option>
+                <option value={'북미'}>북미</option>
+                <option value={'일본'}>일본</option>
+                <option value={'러시아'}>러시아</option>
+                <option value={'호주'}>호주</option>
             </Select>
         )
     }
-
+    
     return (
-        <Select fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} onChange={setter} fontSize={'14px'}>
-            <option value={'한국'}>
-                <HStack>
-                    <Avatar w={'10px'} h={'10px'} src={kr} />
-                    <Text>한국</Text>
-                </HStack>
-            </option>
-            <option value={'북미'}>
-                <HStack>
-                    <Image w={'10px'} h={'10px'} src={us} />
-                    <Text>북미</Text>
-                </HStack>
-            </option>
-            <option value={'일본'}>
-                <HStack>
-                    <Image w={'10px'} h={'10px'} src={jp} />
-                    <Text>일본</Text>
-                </HStack>
-            </option>
-            <option value={'러시아'}>
-                <HStack>
-                    <Image w={'10px'} h={'10px'} src={rs} />
-                    <Text>러시아</Text>
-                </HStack>
-            </option>
+        <Select onChange={(e) => setServer(e.target.value)} fontWeight={'bold'} bgColor={'#171715'} color={'#9a8866'} borderColor={'#9a8866'} borderRadius={0} w={'150px'} fontSize={'14px'}>
+            <option value={'서버 선택'}>서버 선택</option>
+            <option value={'상관없음'}>상관없음</option>
+            <option value={'한국'}>한국</option>
+            <option value={'북미'}>북미</option>
+            <option value={'일본'}>일본</option>
+            <option value={'러시아'}>러시아</option>
+            <option value={'호주'}>호주</option>
         </Select>
     )
 }
