@@ -19,6 +19,7 @@ import MapSelector from './MapSelector'
 import RegionSelector from './RegionSelector'
 import axios from 'axios'
 import { API_SERVER } from '../application'
+import PlayTypeSelector from './PlayTypeSelector'
 
 
 export default function TeamCreateModal ({onClose, isOpen}) {
@@ -30,12 +31,21 @@ export default function TeamCreateModal ({onClose, isOpen}) {
     const [nickname, setNickname] = useState("")
     const [map, setMap]           = useState("")
     const [server, setServer]     = useState("")
+    const [type, setType]         = useState("")
     const [memo, setMemo]         = useState("")
 
     const validate = () => {
         if (map === "" || map === "맵 선택") {
             toast({
                 title: '맵을 선택해주세요',
+                status: 'warning'
+            })
+            return false
+        }
+
+        if (type === "" || type === "플레이 유형") {
+            toast({
+                title: '플레이 유형을 선택해주세요',
                 status: 'warning'
             })
             return false
@@ -72,6 +82,7 @@ export default function TeamCreateModal ({onClose, isOpen}) {
         setNickname('')
         setMap('')
         setServer('')
+        setType('')
         setMemo('')
         onClose()
     }
@@ -84,12 +95,14 @@ export default function TeamCreateModal ({onClose, isOpen}) {
                 map,
                 server,
                 memo,
+                type,
             } 
             : {
                 nickname,
                 map,
                 server,
                 memo,
+                type,
             }
 
             axios.post(API_SERVER + '/post', JSON.stringify(packet), {headers: {'Content-Type': 'application/json'}})
@@ -103,7 +116,7 @@ export default function TeamCreateModal ({onClose, isOpen}) {
     return (
         <Modal onClose={customClose} isOpen={isOpen} isCentered>
             <ModalOverlay />
-            <ModalContent bgColor={'#121211'} p={'12px 0 12px 0'}>
+            <ModalContent bgColor={'#121211'}p={'12px 0 12px 0'}>
                 <ModalHeader borderBottom={'1px solid #202020'} pt={3} pb={4} fontSize={'16px'} letterSpacing={'-1px'}>같이할 사람 찾기</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody pt={5}>
@@ -121,13 +134,17 @@ export default function TeamCreateModal ({onClose, isOpen}) {
                             </HStack>
                         </FormControl>
                         <HStack spacing={5}>
-                            <FormControl isRequired>
+                            <FormControl>
                                 <FormLabel color={'#AEAEB0'} fontSize={'14px'}>맵</FormLabel>
-                                <MapSelector setter={(e) => setMap(e.target.value)} /> 
+                                <MapSelector      setter={(e) => setMap(e.target.value)} /> 
                             </FormControl>
-                            <FormControl isRequired>
+                            <FormControl>
+                                <FormLabel color={'#AEAEB0'} fontSize={'14px'}>플레이 유형</FormLabel>
+                                <PlayTypeSelector setter={(e) => setType(e.target.value)} />
+                            </FormControl>
+                            <FormControl>
                                 <FormLabel color={'#AEAEB0'} fontSize={'14px'}>서버</FormLabel>
-                                <RegionSelector setter={(e) => setServer(e.target.value)} />
+                                <RegionSelector   setter={(e) => setServer(e.target.value)} />
                             </FormControl>
                         </HStack>
                         <FormControl>

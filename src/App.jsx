@@ -4,8 +4,6 @@ import { Box } from "@chakra-ui/react";
 import Callback from './pages/Discord'
 import { useEffect, useState } from "react";
 
-import axios from "axios";
-
 import { API_SERVER, WEB_SOCKET, WEB } from "./application";
 import usePostStore from "./store/usePostStore";
 import useStatusStore from "./store/useStatusStore";
@@ -37,10 +35,6 @@ function App() {
     }
 
     const ws = new WebSocket(WEB_SOCKET)
-    ws.onopen = () => {
-      console.log('conneceted!')
-    }
-
     ws.onmessage = (message) => {
       const packet = JSON.parse(message.data)
       if (packet.type === "UPDATE") { 
@@ -52,7 +46,6 @@ function App() {
     }
 
     return () => {
-      console.log('clean up')
       ws.close()
     }
   }, [])

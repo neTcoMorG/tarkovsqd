@@ -35,6 +35,11 @@ import jp from '../resource/jp.png'
 import rs from '../resource/rs.png'
 import reset from '../resource/reset.svg'
 
+import gun from '../resource/icon/gun.png'
+import money from '../resource/icon/money.png'
+import boss from '../resource/icon/boss.png'
+import quest from '../resource/icon/quest.png'
+
 
 import PlayTypeSelector from "../components/PlayTypeSelector";
 import { useEffect } from "react";
@@ -49,7 +54,7 @@ export default function Main () {
     const teamModal = useDisclosure()
 
     const {posts, initPosts}  = usePostStore()  
-    const {map, server} = useFilterStore()
+    const {map, server, type} = useFilterStore()
 
     const openModal = () => {
         const token = localStorage.getItem('squadObject')
@@ -75,36 +80,28 @@ export default function Main () {
 
     const searchQueryGenerator = () => {
         const query = new URLSearchParams()
-        if (map !== null) {
-            query.append("map", map)
-        }
-        if (server !== null) {
-            query.append("server", server)
-        }
-
+        if (map !== null) { query.append("map", map) }
+        if (server !== null) { query.append("server", server) }
+        if (type !== null) { query.append("type", type) }
         return query.toString()
     }
 
     const onResetFilterClick = () => {
-        axios.get(API_SERVER + '/post').then(res => {
-            initPosts(res.data.content)
-        })
+        axios.get(API_SERVER + '/post').then(res => { initPosts(res.data.content) })
     }
-
+    
     useEffect(() => {
         console.log(API_SERVER + '/post?' + searchQueryGenerator())
-        axios.get(API_SERVER + '/post?' + searchQueryGenerator()).then(res => {
-            initPosts(res.data.content)
-        })
-    }, [map, server])
+        axios.get(API_SERVER + '/post?' + searchQueryGenerator()).then(res => { initPosts(res.data.content) })
+    }, [map, server, type])
 
     return (
     <Box w={'100%'} bgColor={'black'} backgroundImage={bg} backgroundSize={'cover'} backgroundRepeat={'no-repeat'} backgroundAttachment={'fixed'} pb={'400px'}>
         <LoginModal onClose={loginModal.onClose} isOpen={loginModal.isOpen} teamModalOpen={teamModal.onOpen} />
         <TeamCreateModal onClose={teamModal.onClose} isOpen={teamModal.isOpen} />
         <Header />
-        <Container maxW={'1200px'} mt={10}>
-            <Box w={'100%'} p={'18px 24px 18px 24px'} bgColor={'#151515'} border={'1px solid #9a886650'}>
+        <Container maxW={'1200px'} mt={8}>
+            {/* <Box w={'100%'} p={'18px 24px 18px 24px'} bgColor={'#151515'} border={'1px solid #9a886650'}>
                 <VStack alignItems={'flex-start'} spacing={3}>
                     <Text fontSize={'18px'} letterSpacing={'-1px'} fontWeight={'bold'} color={'#9A8866'}>공지사항</Text>
                     <Text fontSize={'15px'}>
@@ -112,7 +109,7 @@ export default function Main () {
                         사용자 프로필을 클릭하면 빠르게 디스코드 아이디를 복사할 수 있습니다. <br/>
                     </Text>
                 </VStack>
-            </Box>
+            </Box> */}
             <HStack justifyContent={'space-between'} pt={5}>
                 <HStack spacing={4}>
                     <Tooltip fontSize={'12px'} label={'필터 초기화'}>
@@ -121,7 +118,7 @@ export default function Main () {
                         </Box>
                     </Tooltip>
                     <MapSelector      isFilter={true} />
-                    <PlayTypeSelector disabled={true} />
+                    <PlayTypeSelector isFilter={true} />
                     <RegionSelector   isFilter={true} />
                 </HStack>
                 <Button fontSize={'14px'} bgColor={'#9A8866'} color={'#29241D'} borderRadius={0} fontWeight={'bold'} letterSpacing={'-1px'} onClick={openModal}>팀원 찾기</Button>
@@ -133,6 +130,7 @@ export default function Main () {
                             <Tr>
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} w={'250px'} fontSize={'11px'} color={'#9A8866'}>디스코드</Th>
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} w={'180px'} fontSize={'11px'} color={'#9A8866'}>맵</Th>
+                                <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} w={'180px'} fontSize={'11px'} color={'#9A8866'}>플레이 유형</Th>
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} w={'200px'} color={'#9A8866'}>서버</Th>
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} fontSize={'11px'} color={'#9A8866'} w={'450px'}>메모</Th>
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} fontSize={'11px'} color={'#9A8866'}>등록 시간</Th>
@@ -153,8 +151,27 @@ export default function Main () {
                                         </VStack>
                                     </HStack>
                                 </Td>
+
                                 <Td color={'#AEAEB0'} fontWeight={'bold'}>{p.map}</Td>
                                 
+                                {p.type === "" && <Td color={'gray'}>미지정</Td>}
+                                {p.type === "파밍" && 
+                                    <Td color={'gold'}>
+                                        <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'파밍 위주 플레이'}>
+                                            <Image ml={2} src={money} h={'24px'} w={'24px'} filter={'opacity(0.5) drop-shadow(0 0 0 yellow)'}/></Tooltip></Td>}
+                                {p.type === "보스런" && 
+                                    <Td color={'crimson'}>
+                                        <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'보스만 목표로 달린다'}>
+                                            <Image ml={2} src={boss} h={'24px'} w={'26px'} filter={'opacity(0.5) drop-shadow(0 0 0 red)'}/></Tooltip></Td>}
+                                {p.type === "교전" &&
+                                    <Td color={'crimson'}>
+                                        <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'교전 위주 플레이'}>
+                                            <Image ml={2} src={gun} h={'24px'} w={'24px'} filter={'opacity(0.5) drop-shadow(0 0 0 red)'}/></Tooltip></Td>}
+                                {p.type === "퀘스트" &&
+                                    <Td color={'crimson'}>
+                                        <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'퀘스트 위주 플레이'}>
+                                            <Image ml={2} src={quest} h={'24px'} w={'24px'} filter={'opacity(0.5) drop-shadow(0 0 0 #9a8866)'}/></Tooltip></Td>}
+        
                                 {p.server === '한국' && <Td>
                                     <HStack><Image w={'18px'} h={'18px'} src={kr} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
                                 {p.server === '북미' && <Td color={'#AEAEB0'}>
@@ -179,7 +196,6 @@ export default function Main () {
                                             textOverflow: 'ellipsis',
                                         }}>{p.memo}</Text>
                                 </Td>
-
                                 <Td color={'gray'}>{p.time}</Td>
                             </Tr>)}
                         </Tbody>
