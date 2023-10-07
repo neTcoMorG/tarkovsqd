@@ -17,7 +17,12 @@ import {
     Image,
     useToast,
     Tooltip,
-    Center
+    Center,
+    Menu,
+    MenuButton,
+    IconButton,
+    MenuList,
+    MenuItem
 } from "@chakra-ui/react";
 
 import Header from "../components/Header";
@@ -46,6 +51,8 @@ import { useEffect } from "react";
 import { API_SERVER } from "../application";
 import axios from "axios";
 import useFilterStore from "../store/useFilterStore";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import FunctionMenu from "../components/FunctionMenu";
 
 export default function Main () {
 
@@ -101,15 +108,6 @@ export default function Main () {
         <TeamCreateModal onClose={teamModal.onClose} isOpen={teamModal.isOpen} />
         <Header />
         <Container maxW={'1200px'} mt={8}>
-            {/* <Box w={'100%'} p={'18px 24px 18px 24px'} bgColor={'#151515'} border={'1px solid #9a886650'}>
-                <VStack alignItems={'flex-start'} spacing={3}>
-                    <Text fontSize={'18px'} letterSpacing={'-1px'} fontWeight={'bold'} color={'#9A8866'}>공지사항</Text>
-                    <Text fontSize={'15px'}>
-                        필터링 기능(맵, 서버)이 추가되었습니다. <br/>
-                        사용자 프로필을 클릭하면 빠르게 디스코드 아이디를 복사할 수 있습니다. <br/>
-                    </Text>
-                </VStack>
-            </Box> */}
             <HStack justifyContent={'space-between'} pt={5}>
                 <HStack spacing={4}>
                     <Tooltip fontSize={'12px'} label={'필터 초기화'}>
@@ -134,6 +132,7 @@ export default function Main () {
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} w={'200px'} color={'#9A8866'}>서버</Th>
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} fontSize={'11px'} color={'#9A8866'} w={'450px'}>메모</Th>
                                 <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} fontSize={'11px'} color={'#9A8866'}>등록 시간</Th>
+                                <Th textShadow={'1px 1px 1px rgba(0,0,0,.004)'} fontSize={'11px'} color={'#9A8866'}>기능</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
@@ -197,6 +196,9 @@ export default function Main () {
                                         }}>{p.memo}</Text>
                                 </Td>
                                 <Td color={'gray'}>{p.time}</Td>
+                                <Td>
+                                    <FunctionMenu postUUID={p.uuid} />
+                                </Td>
                             </Tr>)}
                         </Tbody>
                     </Table>
