@@ -33,6 +33,7 @@ import kr from '../resource/kr.png'
 import us from '../resource/us.png'
 import jp from '../resource/jp.png'
 import rs from '../resource/rs.png'
+import aus from '../resource/aus.png'
 import reset from '../resource/reset.svg'
 
 import gun from '../resource/icon/gun.png'
@@ -114,7 +115,7 @@ export default function Main () {
                 <HStack spacing={4}>
                     <Tooltip fontSize={'12px'} label={'필터 초기화'}>
                         <Box bgColor={'#121211'} border={'1px solid #9A8866'} cursor={'pointer'} onClick={onResetFilterClick}>
-                            <Image p={'6px'} src={reset} h={'38px'} w={'39px'} />
+                            <Image alt="초기화" p={'6px'} src={reset} h={'38px'} w={'39px'} />
                         </Box>
                     </Tooltip>
                     <MapSelector      isFilter={true} />
@@ -141,7 +142,7 @@ export default function Main () {
                             <Tr fontSize={'12px'} bgColor={'#151515'}>
                                 <Td>
                                     <HStack spacing={2}>
-                                        <Avatar size={'sm'} src={p.avatar_url} />
+                                        <Avatar alt={'아바타'}  size={'sm'} src={p.avatar_url} />
                                         <VStack spacing={0} alignItems={'flex-start'}>
                                             <Tooltip fontSize={'10px'} label={'아이디 복사'}>
                                                 <Text color={'#9A8866'} cursor={'pointer'} onClick={handleCopyClipBoard}>{p.nickname}</Text>
@@ -158,34 +159,38 @@ export default function Main () {
                                 {p.type === "파밍" && 
                                     <Td color={'gold'}>
                                         <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'파밍 위주 플레이'}>
-                                            <Image ml={2} src={money} h={'24px'} w={'24px'} filter={'opacity(0.5) drop-shadow(0 0 0 yellow)'}/></Tooltip></Td>}
+                                            <Image alt="보스런" ml={2} src={money} h={'24px'} w={'23px'}/></Tooltip></Td>}
                                 {p.type === "보스런" && 
                                     <Td color={'crimson'}>
                                         <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'보스만 목표로 달린다'}>
-                                            <Image ml={2} src={boss} h={'24px'} w={'26px'} filter={'opacity(0.5) drop-shadow(0 0 0 red)'}/></Tooltip></Td>}
+                                            <Image alt="교전" ml={2} src={boss} h={'28px'} w={'28px'}/></Tooltip></Td>}
                                 {p.type === "교전" &&
                                     <Td color={'crimson'}>
                                         <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'교전 위주 플레이'}>
-                                            <Image ml={2} src={gun} h={'24px'} w={'24px'} filter={'opacity(0.5) drop-shadow(0 0 0 red)'}/></Tooltip></Td>}
+                                            <Image alt="퀘스트" ml={2} src={gun} h={'27px'} w={'27px'} /></Tooltip></Td>}
                                 {p.type === "퀘스트" &&
                                     <Td color={'crimson'}>
                                         <Tooltip bgColor={'#9a8866'} color={'#373128'} fontSize={'12px'} label={'퀘스트 위주 플레이'}>
-                                            <Image ml={2} src={quest} h={'24px'} w={'24px'} filter={'opacity(0.5) drop-shadow(0 0 0 #9a8866)'}/></Tooltip></Td>}
+                                            <Image alt="퀘스트" ml={2} src={quest} h={'24px'} w={'24px'}/></Tooltip></Td>}
         
                                 {p.server === '한국' && <Td>
-                                    <HStack><Image w={'18px'} h={'18px'} src={kr} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
+                                    <HStack><Image alt="한국" w={'18px'} h={'18px'} src={kr} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
+                                {p.server === '호주' && <Td>
+                                    <HStack><Image alt="호주" w={'18px'} h={'18px'} src={aus} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
                                 {p.server === '북미' && <Td color={'#AEAEB0'}>
-                                    <HStack><Image w={'18px'} h={'18px'} src={us} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
+                                    <HStack><Image alt="북미" w={'18px'} h={'18px'} src={us} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
                                 {p.server === '일본' && <Td color={'#AEAEB0'}>
-                                    <HStack><Image w={'18px'} h={'18px'} src={jp} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
+                                    <HStack><Image alt="일본" w={'18px'} h={'18px'} src={jp} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
                                 {p.server === '러시아' && <Td color={'#AEAEB0'}>
-                                    <HStack><Image w={'18px'} h={'18px'} src={rs} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
+                                    <HStack><Image alt="러시아" w={'18px'} h={'18px'} src={rs} /><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
                                 {p.server ===  '상관없음' && <Td color={'#AEAEB0'}>
                                     <HStack><Text color={'#AEAEB0'}>{p.server}</Text></HStack></Td>}
 
                                 <Td wordBreak={'break-all'} pr={10}>
-                                    <Text 
-                                        color={'#9a8866'}  
+                                    <Box bgColor={'#9a8866'} borderRadius={5} p={'8px 10px 8px 10px'}>
+                                        <Text 
+                                        lineHeight={'16px'}
+                                        color={'#373128'}  
                                         whiteSpace={'normal'} 
                                         fontWeight={'bold'}
                                         style={{
@@ -195,6 +200,7 @@ export default function Main () {
                                             WebkitBoxOrient: 'vertical',
                                             textOverflow: 'ellipsis',
                                         }}>{p.memo}</Text>
+                                    </Box>
                                 </Td>
                                 <Td color={'gray'}>{p.time}</Td>
                             </Tr>)}

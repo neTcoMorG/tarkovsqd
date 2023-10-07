@@ -114,12 +114,12 @@ export default function TeamCreateModal ({onClose, isOpen}) {
     }
     
     return (
-        <Modal onClose={customClose} isOpen={isOpen} isCentered>
+        <Modal size={'xl'} onClose={customClose} isOpen={isOpen} isCentered>
             <ModalOverlay />
-            <ModalContent bgColor={'#121211'}p={'12px 0 12px 0'}>
+            <ModalContent bgColor={'#121211'} p={'12px 0 12px 0'}>
                 <ModalHeader borderBottom={'1px solid #202020'} pt={3} pb={4} fontSize={'16px'} letterSpacing={'-1px'}>같이할 사람 찾기</ModalHeader>
                 <ModalCloseButton />
-                <ModalBody pt={5}>
+                <ModalBody pt={5} w={'100%'}>
                     <VStack alignItems={'flex-start'} spacing={8}>
                         <FormControl isRequired>
                             <FormLabel color={'#AEAEB0'} fontSize={'14px'}>디스코드 아이디</FormLabel>
