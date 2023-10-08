@@ -1,5 +1,4 @@
 import {
-<<<<<<< HEAD
   Avatar,
   Box,
   Button,
@@ -18,29 +17,8 @@ import {
   Tr,
   useDisclosure,
   useToast,
+  VStack,
 } from "@chakra-ui/react";
-=======
-	Avatar,
-	Box,
-	Button,
-	Center,
-	Container,
-	HStack,
-	Image,
-	Table,
-	TableContainer,
-	Tbody,
-	Td,
-	Text,
-	Th,
-	Thead,
-	Tooltip,
-	Tr,
-	useDisclosure,
-	useToast,
-	VStack,
-} from '@chakra-ui/react';
->>>>>>> 9085a5f29657e297e73e700e174c58c63c3245fd
 
 import MapSelector from "../components/MapSelector";
 import RegionSelector from "../components/RegionSelector";
@@ -240,9 +218,9 @@ export default function Main() {
                       <Td>
                         <HStack spacing={2}>
                           <Avatar size={"sm"} src={p.avatar_url} />
-                          <HStack
+                          <VStack
                             spacing={0}
-                            alignItems={"center"}
+                            alignItems={"flex-start"}
                             gap={"10px"}
                           >
                             <Tooltip
@@ -267,11 +245,13 @@ export default function Main() {
                               color={p.verify ? "white" : "red"}
                             >
                               <Image
+                                position={"relative"}
+                                top={"-5px"}
                                 src={p.verify ? discord : discordBlack}
                                 width={"15px"}
-                              ></Image>
+                              />
                             </Tooltip>
-                          </HStack>
+                          </VStack>
                         </HStack>
                       </Td>
 
