@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { WEB, WEB_SOCKET } from './application';
 import usePostStore, { Post } from './store/usePostStore';
 import useStatusStore from './store/useStatusStore';
+
 import Market from 'pages/market/Market';
 import Header from 'components/Header';
 import { TestMarketList } from './pages/market/TestMarketList';
@@ -63,10 +64,10 @@ function App() {
 		<Box w={ '100%' }>
 			<Header />
 			<Routes>
-				<Route path={ '/' }        element={ <Main /> }     />
+				<Route path={ '/' } element={ <Main /> } />
 				<Route path={ '/discord' } element={ <Callback /> } />
-				<Route path={ '/market' }  element={ <Market /> }   />
-				<Route path={ '/marketlist' } element={ <TestMarketList /> } />
+				<Route path={ '/market' } element={ <Market /> } />
+				<Route path={ '/market' } element={ <Market /> } />
 			</Routes>
 		</Box>
 	);
