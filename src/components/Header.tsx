@@ -1,7 +1,9 @@
-import { Box, Container, Heading, HStack, Text } from '@chakra-ui/react';
+import { Box, Container, Image, HStack, Text, Heading } from '@chakra-ui/react';
 
 import useStatusStore from '../store/useStatusStore';
 import { useNavigate } from 'react-router';
+
+import squad from '../resource/squad.png'
 
 export default function Header() {
 	
@@ -16,12 +18,11 @@ export default function Header() {
 		     zIndex={ 10 }>
 			<Container maxW={ '1200px'} p={ '24px 16px 24px 16px' }>
 				<HStack spacing={ 4 } w={ '100%' } justifyContent={ 'space-between' }>
-					<Heading as={ 'h1' }
-					         fontFamily={ 'Chakra Petch' }
-					         fontSize={ '28px' }
-					         fontWeight={ 'bold' }
-					         letterSpacing={ '-1px' }
-					         color={ '#9A8866' }>Tarkov SQUAD</Heading>
+					<Image 
+						src={squad}
+						w={'75px'}
+						h={'auto'}
+					/>
 					<HStack>
 						<Text color={ '#9a8866' } letterSpacing={ '-1px' } fontSize={ '14px' }>실시간 스쿼드 이용자: </Text>
 						{
