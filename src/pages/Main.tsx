@@ -17,7 +17,6 @@ import {
 	Tr,
 	useDisclosure,
 	useToast,
-	VStack,
 } from '@chakra-ui/react';
 
 import MapSelector from '../components/MapSelector';
@@ -38,6 +37,8 @@ import gun from '../resource/icon/gun.png';
 import money from '../resource/icon/money.png';
 import boss from '../resource/icon/boss.png';
 import quest from '../resource/icon/quest.png';
+import discord from '../resource/icon/discord.png';
+import discordBlack from '../resource/icon/discord_black.png';
 
 
 import PlayTypeSelector from '../components/PlayTypeSelector';
@@ -109,6 +110,7 @@ export default function Main() {
 	
 	return (
 		<Box w={ '100%' }
+		     zIndex={ 1 }
 		     bgColor={ 'black' }
 		     backgroundImage={ bg }
 		     backgroundSize={ 'cover' }
@@ -172,21 +174,18 @@ export default function Main() {
 										<Td>
 											<HStack spacing={ 2 }>
 												<Avatar size={ 'sm' } src={ p.avatar_url } />
-												<VStack spacing={ 0 } alignItems={ 'flex-start' }>
+												<HStack spacing={ 0 } alignItems={ 'center' } gap={ '10px' }>
 													<Tooltip fontSize={ '12px' } bgColor={ '#9a8866' } color={ '#373128' } label={ '아이디 복사' }>
 														<Text color={ '#9A8866' }
 														      cursor={ 'pointer' }
 														      fontWeight={ 'bold' }
 														      onClick={ handleCopyClipBoard }>{ p.nickname }</Text>
 													</Tooltip>
-													{
-														p.verify ? (
-															<Text color={ '#5865f2' } fontSize={ '10px' } letterSpacing={ '-1px' }>디스코드 인증됨</Text>
-														) : (
-															<Text color={ 'gray' } fontSize={ '10px' } letterSpacing={ '-1px' }>디스코드 미인증</Text>
-														)
-													}
-												</VStack>
+													<Tooltip label={ p.verify ? '디스코드 인증됨' : '디스코드 미인증' }
+													         color={ p.verify ? 'white' : 'red' }>
+														<Image src={ p.verify ? discord : discordBlack } width={ '15px' }></Image>
+													</Tooltip>
+												</HStack>
 											</HStack>
 										</Td>
 										
