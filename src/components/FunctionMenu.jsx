@@ -18,9 +18,9 @@ export default function FunctionMenu ({UUID, postId}) {
         if (!data) { return false }
         return data ? data.uuid === UUID : false
     }
-
+    
     return (
-        <Menu >
+        <Menu>
             <MenuButton as={IconButton} aria-label="functions" icon={<HamburgerIcon />} variant={'outline'} 
             border={'none'} p={0} margin={0} size={'xs'} />
             <MenuList bgColor={'black'}  width={'10px'} border={'1px solid #9A8866'}>

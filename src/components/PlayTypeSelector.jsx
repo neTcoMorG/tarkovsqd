@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Image, Select } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Image, Select, Tooltip } from '@chakra-ui/react';
 import useFilterStore from '../store/useFilterStore';
 
 import boss from '../resource/icon/boss.png';
@@ -31,25 +31,27 @@ export default function PlayTypeSelector({ setter, isFilter = false }) {
 	return (
 		<Box height={ '40px' }>
 			<ButtonGroup size={ 'sm' } isAttached variant={ 'outline' }>
-				<TypeButton image={ asterlist } typeName={ '플레이 유형' } />
-				<TypeButton image={ money } typeName={ '파밍' } />
-				<TypeButton image={ quest } typeName={ '퀘스트' } />
-				<TypeButton image={ gun } typeName={ '교전' } />
-				<TypeButton image={ boss } typeName={ '보스런' } />
+				<TypeButton tooltip={'전체'} image={ asterlist } typeName={ '플레이 유형' } />
+				<TypeButton tooltip={'파밍'} image={ money } typeName={ '파밍' } />
+				<TypeButton tooltip={'퀘스트'} image={ quest } typeName={ '퀘스트' } />
+				<TypeButton tooltip={'교전'} image={ gun } typeName={ '교전' } />
+				<TypeButton tooltip={'보스런'} image={ boss } typeName={ '보스런' } />
 			</ButtonGroup>
 		</Box>
 	);
 }
 
-const TypeButton = ({ image, typeName }) => {
+const TypeButton = ({ image, typeName, tooltip }) => {
 	const { type, setType } = useFilterStore();
 	
 	return (
-		<Button backgroundColor={ type === typeName ? 'black' : '#171715' }
-		        transition={ 'background-color 0.1s ease-in-out' }
-		        borderRadius={ '0' }
-		        borderColor={ '#9a8866' } 
-				onClick={ () => {setType(typeName)} } 
-				height={ '40px' }><Image src={ image } width={ '20px' } height={ 'auto' } /></Button>
+		<Tooltip bgColor={ '#9a8866' } color={ '#373128' } fontSize={ '12px' } label={ tooltip }>
+			<Button backgroundColor={ type === typeName ? '#101010' : '#171715' }
+					transition={ 'background-color 0.1s ease-in-out' }
+					borderRadius={ '0' }
+					borderColor={ '#9a8866' } 
+					onClick={ () => {setType(typeName)} } 
+					height={ '40px' }><Image src={ image } width={ '20px' } height={ 'auto' } /></Button>
+		</Tooltip>
 	);
 };

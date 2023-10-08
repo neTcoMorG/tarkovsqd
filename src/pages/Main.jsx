@@ -175,9 +175,10 @@ export default function Main() {
 											<HStack spacing={ 2 }>
 												<Avatar alt={ '아바타' } size={ 'sm' } src={ p.avatar_url } />
 												<VStack spacing={ 0 } alignItems={ 'flex-start' }>
-													<Tooltip fontSize={ '10px' } label={ '아이디 복사' }>
+													<Tooltip fontSize={ '12px' } bgColor={ '#9a8866' } color={ '#373128' } label={ '아이디 복사' }>
 														<Text color={ '#9A8866' }
 														      cursor={ 'pointer' }
+															  fontWeight={'bold'}
 														      onClick={ handleCopyClipBoard }>{ p.nickname }</Text>
 													</Tooltip>
 													{
