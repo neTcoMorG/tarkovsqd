@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { WEB, WEB_SOCKET } from './application';
 import usePostStore, { Post } from './store/usePostStore';
 import useStatusStore from './store/useStatusStore';
+import { TestMarketList } from './pages/market/TestMarketList';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
 			<Routes>
 				<Route path={ '/' } element={ <Main /> } />
 				<Route path={ '/discord' } element={ <Callback /> } />
+				<Route path={ '/marketlist' } element={ <TestMarketList /> } />
 			</Routes>
 		</Box>
 	);
