@@ -7,8 +7,12 @@ import { useEffect } from 'react';
 import { WEB, WEB_SOCKET } from './application';
 import usePostStore, { Post } from './store/usePostStore';
 import useStatusStore from './store/useStatusStore';
+<<<<<<< HEAD
 import Market from 'pages/market/Market';
 import Header from 'components/Header';
+=======
+import { TestMarketList } from './pages/market/TestMarketList';
+>>>>>>> 06aab6d930b74500d7b61eb112e9589287f45847
 
 
 function App() {
@@ -63,6 +67,7 @@ function App() {
 				<Route path={ '/' }        element={ <Main /> }     />
 				<Route path={ '/discord' } element={ <Callback /> } />
 				<Route path={ '/market' }  element={ <Market /> }   />
+				<Route path={ '/marketlist' } element={ <TestMarketList /> } />
 			</Routes>
 		</Box>
 	);
