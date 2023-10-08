@@ -20,7 +20,6 @@ import {
 	VStack,
 } from '@chakra-ui/react';
 
-import Header from '../components/Header';
 import MapSelector from '../components/MapSelector';
 import RegionSelector from '../components/RegionSelector';
 import TeamCreateModal from '../components/TeamCreateModal';
@@ -110,6 +109,7 @@ export default function Main() {
 	
 	return (
 		<Box w={ '100%' }
+			zIndex={1}
 		     bgColor={ 'black' }
 		     backgroundImage={ bg }
 		     backgroundSize={ 'cover' }
@@ -118,8 +118,7 @@ export default function Main() {
 		     pb={ '400px' }>
 			<LoginModal onClose={ loginModal.onClose } isOpen={ loginModal.isOpen } teamModalOpen={ teamModal.onOpen } />
 			<TeamCreateModal onClose={ teamModal.onClose } isOpen={ teamModal.isOpen } />
-			<Header />
-			<Container maxW={ '1200px' } mt={ 8 }>
+			<Container maxW={ '1200px' } pt={ 8 }>
 				<HStack justifyContent={ 'space-between' } pt={ 5 }>
 					<HStack spacing={ 4 }>
 						{/* <Tooltip fontSize={ '12px' } label={ '필터 초기화' }>
