@@ -10,6 +10,7 @@ export default function Header() {
 	
 	return (
 		<Box w={ '100%' }
+			 position={'relative'}
 		     bgColor={ 'black' }
 		     boxShadow={ '0 0 100px rgba(65,61,52,1), 0 0 6px rgba(232,190,107,0.8)' }
 		     zIndex={ 10 }>
@@ -31,14 +32,19 @@ export default function Header() {
 				</HStack>
 			</Container>
 			<Box w={'100%'} borderTop={'1px solid #101010'}>
-				<Container maxW={'1200px'} p={'24px 16px 24px 16px'}>
-					<HStack spacing={10} h={'100%'}>
-						<Text
-							onClick={() => navigate('/')} 
-							fontSize={'14px'} color={ '#9A8866' } cursor={'pointer'}>팀원찾기</Text>
+				<Container maxW={'1200px'} p={'16px 16px 16px 16px'}>
+					<HStack justifyContent={'space-between'} h={'100%'}>
+						<HStack spacing={10}>
+							<Text
+								onClick={() => navigate('/')} 
+								fontSize={'14px'} color={ '#9A8866' } cursor={'pointer'}>팀원찾기</Text>
+							<Text 
+								onClick={() => navigate('/market')}
+								fontSize={'14px'} color={ '#9A8866' } cursor={'pointer'}>암시장</Text>
+						</HStack>
 						<Text 
 							onClick={() => navigate('/market')}
-							fontSize={'14px'} color={ '#9A8866' } cursor={'pointer'}>암시장</Text>
+							fontSize={'14px'} color={ 'green' } letterSpacing={'-1px'} cursor={'pointer'}>쉐르파 인증하기</Text>
 					</HStack>
 				</Container>
 			</Box>

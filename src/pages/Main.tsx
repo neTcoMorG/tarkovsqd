@@ -109,7 +109,6 @@ export default function Main() {
 	
 	return (
 		<Box w={ '100%' }
-			zIndex={1}
 		     bgColor={ 'black' }
 		     backgroundImage={ bg }
 		     backgroundSize={ 'cover' }
