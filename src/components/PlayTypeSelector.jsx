@@ -8,9 +8,7 @@ import quest from '../resource/icon/quest.png';
 import asterlist from '../resource/icon/asterlist.png';
 
 export default function PlayTypeSelector({ setter, isFilter = false }) {
-	
-	const { type, setType } = useFilterStore();
-	
+		
 	if (!isFilter) {
 		return (
 			<Select onChange={ setter }
@@ -47,13 +45,11 @@ const TypeButton = ({ image, typeName }) => {
 	const { type, setType } = useFilterStore();
 	
 	return (
-		
-		<Button backgroundColor={ type === typeName ? 'white' : '#171715' }
+		<Button backgroundColor={ type === typeName ? 'black' : '#171715' }
 		        transition={ 'background-color 0.1s ease-in-out' }
 		        borderRadius={ '0' }
-		        borderColor={ '#9a8866' } onClick={ () => {
-			setType(typeName);
-		} } height={ '40px' }><Image src={ image } width={ '20px' } height={ 'auto' } /></Button>
-	
+		        borderColor={ '#9a8866' } 
+				onClick={ () => {setType(typeName)} } 
+				height={ '40px' }><Image src={ image } width={ '20px' } height={ 'auto' } /></Button>
 	);
 };

@@ -122,16 +122,16 @@ export default function Main() {
 			<Container maxW={ '1200px' } mt={ 8 }>
 				<HStack justifyContent={ 'space-between' } pt={ 5 }>
 					<HStack spacing={ 4 }>
-						<Tooltip fontSize={ '12px' } label={ '필터 초기화' }>
+						{/* <Tooltip fontSize={ '12px' } label={ '필터 초기화' }>
 							<Box bgColor={ '#121211' }
 							     border={ '1px solid #9A8866' }
 							     cursor={ 'pointer' }
 							     onClick={ onResetFilterClick }>
 								<Image alt="초기화" p={ '6px' } src={ reset } h={ '38px' } w={ '39px' } />
 							</Box>
-						</Tooltip>
-						<MapSelector isFilter={ true } />
+						</Tooltip> */}
 						<PlayTypeSelector isFilter={ true } />
+						<MapSelector isFilter={ true } />
 						<RegionSelector isFilter={ true } />
 					</HStack>
 					<Button fontSize={ '14px' }
@@ -197,19 +197,19 @@ export default function Main() {
 										{ p.type === '파밍' &&
 											<Td color={ 'gold' }>
 												<Tooltip bgColor={ '#9a8866' } color={ '#373128' } fontSize={ '12px' } label={ '파밍 위주 플레이' }>
-													<Image alt="보스런" ml={ 2 } src={ money } h={ '24px' } w={ '23px' } /></Tooltip></Td> }
+													<Image alt="파밍" ml={ 2 } src={ money } h={ '21px' } w={ '18px' } /></Tooltip></Td> }
 										{ p.type === '보스런' &&
 											<Td color={ 'crimson' }>
 												<Tooltip bgColor={ '#9a8866' } color={ '#373128' } fontSize={ '12px' } label={ '보스만 목표로 달린다' }>
-													<Image alt="교전" ml={ 2 } src={ boss } h={ '28px' } w={ '28px' } /></Tooltip></Td> }
+													<Image alt="보스런" ml={ 1 } src={ boss } h={ '24px' } w={ '24px' } /></Tooltip></Td> }
 										{ p.type === '교전' &&
 											<Td color={ 'crimson' }>
 												<Tooltip bgColor={ '#9a8866' } color={ '#373128' } fontSize={ '12px' } label={ '교전 위주 플레이' }>
-													<Image alt="퀘스트" ml={ 2 } src={ gun } h={ '27px' } w={ '27px' } /></Tooltip></Td> }
+													<Image alt="교전" ml={ 2 } src={ gun } h={ '27px' } w={ '25px' } /></Tooltip></Td> }
 										{ p.type === '퀘스트' &&
 											<Td color={ 'crimson' }>
 												<Tooltip bgColor={ '#9a8866' } color={ '#373128' } fontSize={ '12px' } label={ '퀘스트 위주 플레이' }>
-													<Image alt="퀘스트" ml={ 2 } src={ quest } h={ '24px' } w={ '24px' } /></Tooltip></Td> }
+													<Image alt="퀘스트" ml={ 2 } src={ quest } h={ '20px' } w={ '19px' } /></Tooltip></Td> }
 										
 										{ p.server === '한국' && <Td>
 											<HStack><Image alt="한국"
@@ -257,7 +257,7 @@ export default function Main() {
 										</Td>
 										<Td color={ 'gray' }>{ p.time }</Td>
 										<Td>
-											<FunctionMenu postUUID={ p.uuid } />
+											<FunctionMenu UUID={ p.uuid } postId={ p.postId } />
 										</Td>
 									</Tr>) }
 							</Tbody>

@@ -11,8 +11,8 @@ import useStatusStore from "./store/useStatusStore";
 
 function App() {
   
-  const {setPosts }           = usePostStore()
-  const {setOnline}           = useStatusStore()
+  const {setPosts, deletePost }           = usePostStore()
+  const {setOnline}                       = useStatusStore()
 
   const sendNoti = (data) => {
     if (Notification.permission !== 'granted') {
@@ -37,6 +37,9 @@ function App() {
     const ws = new WebSocket(WEB_SOCKET)
     ws.onmessage = (message) => {
       const packet = JSON.parse(message.data)
+      if (packet.type === "DELETE") {
+        deletePost(packet.data.key)
+      }
       if (packet.type === "UPDATE") { 
         console.log("UPDATE PACKET TIME:" )
         setPosts(packet.data) 

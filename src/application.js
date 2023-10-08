@@ -1,4 +1,4 @@
-const MODE = 'prod';
+const MODE = 'test';
 
 let API_SERVER = '';
 let WEB_SOCKET = '';
