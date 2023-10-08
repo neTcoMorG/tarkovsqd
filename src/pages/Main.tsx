@@ -1,4 +1,5 @@
 import {
+<<<<<<< HEAD
   Avatar,
   Box,
   Button,
@@ -18,6 +19,28 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
+=======
+	Avatar,
+	Box,
+	Button,
+	Center,
+	Container,
+	HStack,
+	Image,
+	Table,
+	TableContainer,
+	Tbody,
+	Td,
+	Text,
+	Th,
+	Thead,
+	Tooltip,
+	Tr,
+	useDisclosure,
+	useToast,
+	VStack,
+} from '@chakra-ui/react';
+>>>>>>> 9085a5f29657e297e73e700e174c58c63c3245fd
 
 import MapSelector from "../components/MapSelector";
 import RegionSelector from "../components/RegionSelector";
