@@ -17,6 +17,7 @@ import {
 	Tr,
 	useDisclosure,
 	useToast,
+	VStack,
 } from '@chakra-ui/react';
 
 import MapSelector from '../components/MapSelector';
@@ -174,7 +175,7 @@ export default function Main() {
 										<Td>
 											<HStack spacing={ 2 }>
 												<Avatar size={ 'sm' } src={ p.avatar_url } />
-												<HStack spacing={ 0 } alignItems={ 'center' } gap={ '10px' }>
+												<VStack spacing={ 0 } alignItems={ 'flex-start' } gap={ '10px' }>
 													<Tooltip fontSize={ '12px' } bgColor={ '#9a8866' } color={ '#373128' } label={ '아이디 복사' }>
 														<Text color={ '#9A8866' }
 														      cursor={ 'pointer' }
@@ -185,7 +186,7 @@ export default function Main() {
 													         color={ p.verify ? 'white' : 'red' }>
 														<Image src={ p.verify ? discord : discordBlack } width={ '15px' }></Image>
 													</Tooltip>
-												</HStack>
+												</VStack>
 											</HStack>
 										</Td>
 										
