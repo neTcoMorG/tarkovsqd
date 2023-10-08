@@ -34,7 +34,6 @@ import us from '../resource/us.png';
 import jp from '../resource/jp.png';
 import rs from '../resource/rs.png';
 import aus from '../resource/aus.png';
-import reset from '../resource/reset.svg';
 
 import gun from '../resource/icon/gun.png';
 import money from '../resource/icon/money.png';
@@ -69,9 +68,10 @@ export default function Main() {
 		teamModal.onOpen();
 	};
 	
-	const handleCopyClipBoard = (e) => {
+	const handleCopyClipBoard = async (e: any) => {
 		try {
-			navigator.clipboard.writeText(e.target.innerHTML);
+			await navigator.clipboard.writeText(e.target.innerHTML);
+			
 			toast({
 				title: '디스코드 아이디가 복사되었어요',
 				status: 'info',
@@ -129,7 +129,7 @@ export default function Main() {
 							     onClick={ onResetFilterClick }>
 								<Image alt="초기화" p={ '6px' } src={ reset } h={ '38px' } w={ '39px' } />
 							</Box>
-						</Tooltip> */}
+						</Tooltip> */ }
 						<PlayTypeSelector isFilter={ true } />
 						<MapSelector isFilter={ true } />
 						<RegionSelector isFilter={ true } />
@@ -173,12 +173,12 @@ export default function Main() {
 									<Tr fontSize={ '12px' } bgColor={ '#151515' }>
 										<Td>
 											<HStack spacing={ 2 }>
-												<Avatar alt={ '아바타' } size={ 'sm' } src={ p.avatar_url } />
+												<Avatar size={ 'sm' } src={ p.avatar_url } />
 												<VStack spacing={ 0 } alignItems={ 'flex-start' }>
 													<Tooltip fontSize={ '12px' } bgColor={ '#9a8866' } color={ '#373128' } label={ '아이디 복사' }>
 														<Text color={ '#9A8866' }
 														      cursor={ 'pointer' }
-															  fontWeight={'bold'}
+														      fontWeight={ 'bold' }
 														      onClick={ handleCopyClipBoard }>{ p.nickname }</Text>
 													</Tooltip>
 													{
