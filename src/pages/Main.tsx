@@ -20,10 +20,10 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import MapSelector from "../components/MapSelector";
-import RegionSelector from "../components/RegionSelector";
-import TeamCreateModal from "../components/TeamCreateModal";
-import LoginModal from "../components/LoginModal";
+import MapSelector from "../components/main/selector/MapSelector";
+import RegionSelector from "../components/main/selector/RegionSelector";
+import TeamCreateModal from "../components/main/TeamCreateModal";
+import LoginModal from "../components/global/LoginModal";
 import usePostStore from "../store/usePostStore";
 
 import strip from "../resource/strip.png";
@@ -41,12 +41,12 @@ import quest from "../resource/icon/quest.png";
 import discord from "../resource/icon/discord.png";
 import discordBlack from "../resource/icon/discord_black.png";
 
-import PlayTypeSelector from "../components/PlayTypeSelector";
+import PlayTypeSelector from "../components/main/selector/PlayTypeSelector";
 import { useEffect } from "react";
 import { API_SERVER } from "../application";
 import axios from "axios";
 import useFilterStore from "../store/useFilterStore";
-import FunctionMenu from "../components/FunctionMenu";
+import FunctionMenu from "../components/main/FunctionMenu";
 
 export default function Main() {
   const toast = useToast();
@@ -269,7 +269,7 @@ export default function Main() {
                             label={"파밍 위주 플레이"}
                           >
                             <Image
-                              alt="파밍"
+                              alt='파밍'
                               ml={2}
                               src={money}
                               h={"21px"}
@@ -287,7 +287,7 @@ export default function Main() {
                             label={"보스만 목표로 달린다"}
                           >
                             <Image
-                              alt="보스런"
+                              alt='보스런'
                               ml={1}
                               src={boss}
                               h={"24px"}
@@ -305,7 +305,7 @@ export default function Main() {
                             label={"교전 위주 플레이"}
                           >
                             <Image
-                              alt="교전"
+                              alt='교전'
                               ml={2}
                               src={gun}
                               h={"27px"}
@@ -323,7 +323,7 @@ export default function Main() {
                             label={"퀘스트 위주 플레이"}
                           >
                             <Image
-                              alt="퀘스트"
+                              alt='퀘스트'
                               ml={2}
                               src={quest}
                               h={"20px"}
@@ -336,7 +336,7 @@ export default function Main() {
                       {p.server === "한국" && (
                         <Td>
                           <HStack>
-                            <Image alt="한국" w={"18px"} h={"18px"} src={kr} />
+                            <Image alt='한국' w={"18px"} h={"18px"} src={kr} />
                             <Text color={"#AEAEB0"}>{p.server}</Text>
                           </HStack>
                         </Td>
@@ -344,7 +344,7 @@ export default function Main() {
                       {p.server === "호주" && (
                         <Td>
                           <HStack>
-                            <Image alt="호주" w={"18px"} h={"18px"} src={aus} />
+                            <Image alt='호주' w={"18px"} h={"18px"} src={aus} />
                             <Text color={"#AEAEB0"}>{p.server}</Text>
                           </HStack>
                         </Td>
@@ -352,7 +352,7 @@ export default function Main() {
                       {p.server === "북미" && (
                         <Td color={"#AEAEB0"}>
                           <HStack>
-                            <Image alt="북미" w={"18px"} h={"18px"} src={us} />
+                            <Image alt='북미' w={"18px"} h={"18px"} src={us} />
                             <Text color={"#AEAEB0"}>{p.server}</Text>
                           </HStack>
                         </Td>
@@ -360,7 +360,7 @@ export default function Main() {
                       {p.server === "일본" && (
                         <Td color={"#AEAEB0"}>
                           <HStack>
-                            <Image alt="일본" w={"18px"} h={"18px"} src={jp} />
+                            <Image alt='일본' w={"18px"} h={"18px"} src={jp} />
                             <Text color={"#AEAEB0"}>{p.server}</Text>
                           </HStack>
                         </Td>
@@ -369,7 +369,7 @@ export default function Main() {
                         <Td color={"#AEAEB0"}>
                           <HStack>
                             <Image
-                              alt="러시아"
+                              alt='러시아'
                               w={"18px"}
                               h={"18px"}
                               src={rs}
