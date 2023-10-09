@@ -33,13 +33,10 @@ function App() {
 	};
 	
 	useEffect(() => {
-		console.log('rendered main')
-
 		if (window.Notification) {
-			Notification.requestPermission();
-		}
+			Notification.requestPermission(); }
 		
-		const ws = new WebSocket(WEB_SOCKET);
+		let ws: WebSocket = new WebSocket(WEB_SOCKET);
 		ws.onmessage = (message) => {
 			const packet = JSON.parse(message.data);
 			if (packet.type === 'DELETE') {
@@ -54,6 +51,14 @@ function App() {
 				setOnline(packet.data);
 			}
 		};
+
+		// ws.onclose = () => {
+		// 	console.log('try reconnect to ws server')
+		// 	setTimeout(() => {
+		// 		ws = new WebSocket(WEB_SOCKET);
+		// 		console.log('done')
+		// 	}, 1000)
+		// }
 		
 		return () => {
 			ws.close();

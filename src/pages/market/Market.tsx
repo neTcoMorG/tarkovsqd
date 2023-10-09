@@ -1,7 +1,6 @@
 import {
   Box,
   Container,
-  Text,
   Tabs,
   TabList,
   TabPanels,
@@ -10,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import strip from '../../resource/strip.png'
+import NewRegItem from "components/market/NewRegItem";
 
 export default function Market() {
   return (
@@ -42,7 +42,7 @@ export default function Market() {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <p>one!</p>
+              <NewRegItem />
             </TabPanel>
             <TabPanel>
               <p>two!</p>
