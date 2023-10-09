@@ -26,13 +26,13 @@ import TeamCreateModal from "../components/main/TeamCreateModal";
 import LoginModal from "../components/global/LoginModal";
 import usePostStore from "../store/usePostStore";
 
-import strip from "../resource/strip.png";
-import bg from "../resource/bg.png";
-import kr from "../resource/kr.png";
-import us from "../resource/us.png";
-import jp from "../resource/jp.png";
-import rs from "../resource/rs.png";
-import aus from "../resource/aus.png";
+import strip from "../resource/texture/strip.png";
+import bg from "../resource/texture/bg.png";
+import kr from "../resource/flag/kr.png";
+import us from "../resource/flag/us.png";
+import jp from "../resource/flag/jp.png";
+import rs from "../resource/flag/rs.png";
+import aus from "../resource/flag/aus.png";
 
 import gun from "../resource/icon/gun.png";
 import money from "../resource/icon/money.png";

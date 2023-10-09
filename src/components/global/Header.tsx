@@ -3,7 +3,7 @@ import { Box, Container, Image, HStack, Text, Link } from "@chakra-ui/react";
 import useStatusStore from "../../store/useStatusStore";
 import { useNavigate } from "react-router";
 
-import squad from "../../resource/squad.png";
+import squad from "../../resource/brand/squad.png";
 
 export default function Header() {
   const { online } = useStatusStore();
