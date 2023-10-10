@@ -1,7 +1,6 @@
 import { Select } from "@chakra-ui/react";
 import useFilterStore, { Map } from "../../../store/useFilterStore";
 import SelectorProps from "../../../types/selector";
-import React from "react";
 
 export default function MapSelector({
   setter,

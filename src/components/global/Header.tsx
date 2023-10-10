@@ -1,4 +1,4 @@
-import { Box, Container, Image, HStack, Text, Link } from "@chakra-ui/react";
+import { Box, Container, Image, HStack, Text, Tooltip, Badge } from "@chakra-ui/react";
 
 import useStatusStore from "../../store/useStatusStore";
 import { useNavigate } from "react-router";
@@ -20,33 +20,38 @@ export default function Header() {
       <Container maxW={"1200px"} p={"24px 16px 24px 16px"}>
         <HStack spacing={4} w={"100%"} justifyContent={"space-between"}>
           <HStack spacing={"130px"}>
-            <Link href='/'>
-              <Image src={squad} w={"75px"} h={"auto"} />
-            </Link>
+            <Image onClick={() => navigate('/')} src={squad} w={"75px"} h={"auto"} cursor={'pointer'} />
             <HStack justifyContent={"space-between"} h={"100%"}>
-              <HStack spacing={10}>
-                <Text
+              <HStack spacing={12}>
+                {/* <Text
                   onClick={() => navigate("/")}
                   fontSize={"15px"}
                   color={"#9A8866"}
                   cursor={"pointer"}
                 >
                   팀원찾기
-                </Text>
+                </Text> */}
+                <Tooltip label={'타르코프 데이터베이스'} fontSize={'12px'} bgColor={'#191815'}>
+                  <Text
+                    fontSize={"15px"}
+                    color={"#9A8866"}
+                    cursor={"pointer"}
+                    fontWeight={'bold'}
+                    position={'relative'}
+                  >
+                    <Badge position={'absolute'} fontWeight={'bold'} fontSize={'3px'} colorScheme="red" top={'-15px'} left={'13px'} cursor={'default'}>NEW</Badge>
+                    <a href="https://tarkov.akdong.kr/"
+                       target="_blank"
+                       rel="noopener noreferrer">작전 현황</a>
+                  </Text>
+                </Tooltip>
                 <Text
-                  onClick={() => navigate("/market")}
-                  fontSize={"15px"}
-                  color={"#9A8866"}
-                  cursor={"pointer"}
-                >
-                  암시장
-                </Text>
-                <Text
-                  onClick={() => navigate("/market")}
+                  onClick={() => navigate("/roadmap")}
                   fontSize={"15px"}
                   color={"#9A8866"}
                   letterSpacing={"-1px"}
                   cursor={"pointer"}
+                  fontWeight={'bold'}
                 >
                   문의사항
                 </Text>

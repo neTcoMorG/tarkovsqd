@@ -68,6 +68,7 @@ const TypeButton = ({ image, typeName, tooltip }: TypeButtonProps) => {
 
   return (
     <Tooltip
+      fontWeight={'bold'}
       bgColor={"#9a8866"}
       color={"#373128"}
       fontSize={"12px"}

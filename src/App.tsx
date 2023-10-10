@@ -8,9 +8,8 @@ import { WEB, WEB_SOCKET } from "./application";
 import usePostStore, { Post } from "./store/usePostStore";
 import useStatusStore from "./store/useStatusStore";
 
-import Market from "pages/market/Market";
 import Header from "components/global/Header";
-import { TestMarketList } from "./pages/market/TestMarketList";
+import RoadMap from "pages/roadmap/RoadMap";
 
 function App() {
   const { setPosts, deletePost } = usePostStore();
@@ -19,7 +18,8 @@ function App() {
   const sendNoti = (data: Post) => {
     if (Notification.permission !== "granted") {
       return;
-    } else {
+    } 
+    else {
       const notification = new Notification(data.memo, {
         body:
           "[디스코드] " +
@@ -31,7 +31,6 @@ function App() {
           "[서버] " +
           data.server,
       });
-
       notification.onclick = function () {
         window.open(WEB);
       };
@@ -44,6 +43,13 @@ function App() {
     }
 
     let ws: WebSocket = new WebSocket(WEB_SOCKET);
+    ws.onopen = () => {
+      setInterval(() => {
+        ws.send('heartbeat')
+        console.log('send heartbeat')
+      }, 55000)      
+    }
+
     ws.onmessage = (message) => {
       const packet = JSON.parse(message.data);
       if (packet.type === "DELETE") {
@@ -59,13 +65,9 @@ function App() {
       }
     };
 
-    // ws.onclose = () => {
-    // 	console.log('try reconnect to ws server')
-    // 	setTimeout(() => {
-    // 		ws = new WebSocket(WEB_SOCKET);
-    // 		console.log('done')
-    // 	}, 1000)
-    // }
+    ws.onclose = () => {
+      console.log('close wss')
+    }
 
     return () => {
       ws.close();
@@ -78,8 +80,7 @@ function App() {
       <Routes>
         <Route path={"/"} element={<Main />} />
         <Route path={"/discord"} element={<Callback />} />
-        <Route path={"/market"} element={<Market />} />
-        <Route path={"/market"} element={<Market />} />
+        <Route path={"/roadmap"} element={<RoadMap />} />
       </Routes>
     </Box>
   );

@@ -75,7 +75,8 @@ export default function Main() {
         title: "디스코드 아이디가 복사되었어요",
         status: "info",
       });
-    } catch (error) {
+    } 
+    catch (error) {
       alert("클립보드 복사에 실패하였습니다.");
     }
   };
@@ -101,7 +102,6 @@ export default function Main() {
   };
 
   useEffect(() => {
-    console.log(API_SERVER + "/post?" + searchQueryGenerator());
     axios.get(API_SERVER + "/post?" + searchQueryGenerator()).then((res) => {
       initPosts(res.data.content);
     });
@@ -125,6 +125,15 @@ export default function Main() {
       />
       <TeamCreateModal onClose={teamModal.onClose} isOpen={teamModal.isOpen} />
       <Container maxW={"1200px"} pt={8}>
+        <VStack alignItems={'flex-start'} w={'100%'} p={'24px'} bgColor={'#171715'} border={'1px solid #9A8866'} mt={2} mb={2}>
+          <Box>
+            <Text fontWeight={'bold'} fontSize={'18px'} color={'crimson'} letterSpacing={'-1px'}>안내드려요!</Text>
+          </Box>
+          <Text fontSize={'14px'}>
+            [TIP] 모집 글 리스트의 데이터는 실시간으로 갱신되어 새로고침을 할 필요가 없습니다! <br/>
+            [TIP] 사용자 아이디를 클릭하면 디스코드 아이디가 복사됩니다.
+          </Text>
+        </VStack>
         <HStack justifyContent={"space-between"} pt={5}>
           <HStack spacing={4}>
             {/* <Tooltip fontSize={ '12px' } label={ '필터 초기화' }>
@@ -147,8 +156,9 @@ export default function Main() {
             fontWeight={"bold"}
             letterSpacing={"-1px"}
             onClick={openModal}
+            boxShadow={"0 0 100px rgba(65,61,52,1), 0 0 20px rgba(232,190,107,0.8)"}
           >
-            팀원 찾기
+            팀원 모집
           </Button>
         </HStack>
         <Box bgColor={"#171715"} mt={6}>
@@ -227,6 +237,7 @@ export default function Main() {
                               fontSize={"12px"}
                               bgColor={"#9a8866"}
                               color={"#373128"}
+                              fontWeight={'bold'}
                               label={"아이디 복사"}
                             >
                               <Text
@@ -239,8 +250,9 @@ export default function Main() {
                               </Text>
                             </Tooltip>
                             <Tooltip
+                              fontSize={'11px'}
                               label={
-                                p.verify ? "디스코드 인증됨" : "디스코드 미인증"
+                                p.verify ? "디스코드 인증유저" : "디스코드 미인증"
                               }
                               color={p.verify ? "white" : "red"}
                             >
