@@ -1,6 +1,7 @@
 import { Select } from "@chakra-ui/react";
 import useFilterStore, { Map } from "../../../store/useFilterStore";
 import SelectorProps from "../../../types/selector";
+import { isMobile } from "react-device-detect";
 
 export default function MapSelector({
   setter,
@@ -20,8 +21,8 @@ export default function MapSelector({
       color={"#9a8866"}
       borderColor={"#9a8866"}
       borderRadius={0}
-      w={"150px"}
-      fontSize={"14px"}
+      w={isMobile ? "130px" : "150px"}
+      fontSize={isMobile ? '11px' : '14px'}
     >
       <Option />
     </Select>

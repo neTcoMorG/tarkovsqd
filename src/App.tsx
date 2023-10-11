@@ -47,7 +47,7 @@ function App() {
       setInterval(() => {
         ws.send('heartbeat')
         console.log('send heartbeat')
-      }, 55000)      
+      }, 30000)      
     }
 
     ws.onmessage = (message) => {
@@ -56,7 +56,6 @@ function App() {
         deletePost(packet.data.key);
       }
       if (packet.type === "UPDATE") {
-        console.log("UPDATE PACKET TIME:");
         setPosts(packet.data);
         sendNoti(packet.data);
       }

@@ -2,6 +2,7 @@ import { Select } from "@chakra-ui/react";
 
 import useFilterStore, { Server } from "../../../store/useFilterStore";
 import SelectorProps from "../../../types/selector";
+import { isMobile } from "react-device-detect";
 
 export default function RegionSelector({
   setter,
@@ -18,8 +19,8 @@ export default function RegionSelector({
         color={"#9a8866"}
         borderColor={"#9a8866"}
         borderRadius={0}
-        w={"150px"}
-        fontSize={"14px"}
+        w={isMobile ? "130px" : "150px"}
+        fontSize={isMobile ? '11px' : '14px'}
       >
         <option value={"서버 선택"}>서버 선택</option>
         <option value={"상관없음"}>상관없음</option>
@@ -40,8 +41,8 @@ export default function RegionSelector({
       color={"#9a8866"}
       borderColor={"#9a8866"}
       borderRadius={0}
-      w={"150px"}
-      fontSize={"14px"}
+      w={isMobile ? "130px" : "150px"}
+      fontSize={isMobile ? '11px' : '14px'}
     >
       <option value={"서버 선택"}>서버 선택</option>
       <option value={"상관없음"}>상관없음</option>
