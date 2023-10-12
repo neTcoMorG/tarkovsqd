@@ -1,4 +1,4 @@
-const MODE = 'prod';
+const MODE = 'external';
 
 let API_SERVER = '';
 let WEB_SOCKET = '';
@@ -19,7 +19,7 @@ if (MODE === "prod") {
 }
 if (MODE === "external") {
 	WEB = 'http://localhost.3000';
-	API_SERVER = 'https://apisquad.devdev.kr';
+	API_SERVER = 'http://localhost:8080';
 	WEB_SOCKET = 'wss://apisquad.devdev.kr/ws';
 	DISCORD_LOGIN_URL = 'https://discord.com/api/oauth2/authorize?client_id=1159029609552171049&redirect_uri=https%3A%2F%2Fsquad.devdev.kr%2Fdiscord&response_type=code&scope=identify';
 }

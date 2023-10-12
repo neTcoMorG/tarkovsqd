@@ -39,7 +39,7 @@ import money from "../resource/icon/money.png";
 import boss from "../resource/icon/boss.png";
 import quest from "../resource/icon/quest.png";
 import discord from "../resource/icon/discord.png";
-import discordBlack from "../resource/icon/discord_black.png";
+import sherpa from '../resource/icon/shelfa.png'
 
 import PlayTypeSelector from "../components/main/selector/PlayTypeSelector";
 import { useEffect } from "react";
@@ -213,11 +213,13 @@ export default function Main() {
                 </Thead>
                 <Tbody>
                   {posts &&
-                    posts.map((p) => (
+                    posts.map((p: any) => (
                       <Tr fontSize={"12px"} bgColor={"#151515"}>
                         <Td>
                           <HStack spacing={2}>
-                            <Avatar size={"sm"} src={p.avatar_url} />
+                            <Avatar 
+                              boxShadow={p.isSherpa ? "0 0 100px rgba(65,61,52,1), 0 0 18px rgba(232,190,107,0.8)" : ""}
+                              size={"sm"} src={p.avatar_url} />
                             <VStack
                               spacing={0}
                               alignItems={"flex-start"}
@@ -230,7 +232,7 @@ export default function Main() {
                                 fontWeight={'bold'}
                                 label={"아이디 복사"}>
                                   <Text
-                                    color={"#9A8866"}
+                                    color={p.isSherpa ? "#90ee90" : "#9A8866"}
                                     cursor={"pointer"}
                                     fontWeight={"bold"}
                                     onClick={handleCopyClipBoard}>
@@ -244,6 +246,17 @@ export default function Main() {
                                   src={p.verify ? discord : null}
                                   width={"15px"}
                                 />
+                                {p.isSherpa &&
+                                  <Tooltip label={'쉐르파 유저'} 
+                                    fontWeight={'bold'} color={'#90ee90'} letterSpacing={'-1px'} fontSize={'11px'} bgColor={'#151515'}>
+                                    <Image
+                                      position={"relative"}
+                                      top={'1px'}
+                                      left={'-2px'}
+                                      src={sherpa}
+                                      width={"15px"}>
+                                    </Image>
+                                  </Tooltip>}
                               </HStack>
                               {p.verify && <Text letterSpacing={'-1px'} fontSize={'12px'} color={'gray'}>인증됨</Text> }
                             </VStack>
@@ -520,11 +533,13 @@ export default function Main() {
                 </Thead>
                 <Tbody>
                   {posts &&
-                    posts.map((p) => (
+                    posts.map((p: any) => (
                       <Tr fontSize={"12px"} bgColor={"#151515"}>
                         <Td>
                           <HStack spacing={2}>
-                            <Avatar size={"sm"} src={p.avatar_url} />
+                            <Avatar size={"sm"} src={p.avatar_url} 
+                            boxShadow={p.isSherpa ? "0 0 100px rgba(65,61,52,1), 0 0 15px rgba(232,190,107,0.8)" : ""}
+                            />
                             <VStack
                               spacing={0}
                               alignItems={"flex-start"}>
@@ -547,6 +562,17 @@ export default function Main() {
                                   position={"relative"}
                                   src={p.verify ? discord : null}
                                   width={"15px"} />
+                                {p.isSherpa &&
+                                <Tooltip label={'쉐르파 유저'} 
+                                  fontWeight={'bold'} color={'#90ee90'} letterSpacing={'-1px'} fontSize={'11px'} bgColor={'#151515'}>
+                                  <Image
+                                    position={"relative"}
+                                    top={'1px'}
+                                    left={'-2px'}
+                                    src={sherpa}
+                                    width={"15px"}>
+                                  </Image>
+                                </Tooltip>}
                               </HStack>
                               {p.verify && <Text letterSpacing={'-1px'} fontSize={'11px'} color={'gray'}>인증됨</Text>}
                             </VStack>
