@@ -8,10 +8,12 @@ interface Filter {
 	map: Map | null;
 	server: Server | null;
 	type: Type | null;
+	isSherfa: boolean;
 	
 	setMap: (object: Map) => void;
 	setServer: (object: Server) => void;
 	setType: (object: Type) => void;
+	toggleSherfa: () => void;
 }
 
 const useFilterStore = create<Filter>(set => ({
@@ -23,6 +25,9 @@ const useFilterStore = create<Filter>(set => ({
 	
 	type: null,
 	setType: (object) => set(() => ({ type: object === '플레이 유형' ? null : object })),
+	
+	isSherfa: false,
+	toggleSherfa: () => set((prev) => ({ isSherfa: !prev.isSherfa })),
 }));
 
 export default useFilterStore;
