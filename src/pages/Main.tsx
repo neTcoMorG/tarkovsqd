@@ -221,38 +221,31 @@ export default function Main() {
                             <VStack
                               spacing={0}
                               alignItems={"flex-start"}
-                              gap={"10px"}
                             >
-                              <Tooltip
+                              <HStack>
+                                <Tooltip
                                 fontSize={"12px"}
                                 bgColor={"#9a8866"}
                                 color={"#373128"}
                                 fontWeight={'bold'}
-                                label={"아이디 복사"}
-                              >
-                                <Text
-                                  color={"#9A8866"}
-                                  cursor={"pointer"}
-                                  fontWeight={"bold"}
-                                  onClick={handleCopyClipBoard}
-                                >
-                                  {p.nickname}
-                                </Text>
-                              </Tooltip>
-                              <Tooltip
-                                fontSize={'11px'}
-                                label={
-                                  p.verify ? "디스코드 인증유저" : "디스코드 미인증"
-                                }
-                                color={p.verify ? "white" : "red"}
-                              >
+                                label={"아이디 복사"}>
+                                  <Text
+                                    color={"#9A8866"}
+                                    cursor={"pointer"}
+                                    fontWeight={"bold"}
+                                    onClick={handleCopyClipBoard}>
+                                    {p.nickname}
+                                  </Text>
+                                </Tooltip>
                                 <Image
                                   position={"relative"}
-                                  top={"-5px"}
-                                  src={p.verify ? discord : discordBlack}
+                                  top={'1px'}
+                                  left={'-2px'}
+                                  src={p.verify ? discord : null}
                                   width={"15px"}
                                 />
-                              </Tooltip>
+                              </HStack>
+                              {p.verify && <Text letterSpacing={'-1px'} fontSize={'12px'} color={'gray'}>인증됨</Text> }
                             </VStack>
                           </HStack>
                         </Td>
@@ -534,39 +527,28 @@ export default function Main() {
                             <Avatar size={"sm"} src={p.avatar_url} />
                             <VStack
                               spacing={0}
-                              alignItems={"flex-start"}
-                              gap={"10px"}
-                            >
-                              <Tooltip
+                              alignItems={"flex-start"}>
+                              <HStack>
+                                <Tooltip
                                 fontSize={"12px"}
                                 bgColor={"#9a8866"}
                                 color={"#373128"}
                                 fontWeight={'bold'}
-                                label={"아이디 복사"}
-                              >
-                                <Text
-                                  color={"#9A8866"}
-                                  cursor={"pointer"}
-                                  fontWeight={"bold"}
-                                  onClick={handleCopyClipBoard}
-                                >
-                                  {p.nickname}
-                                </Text>
-                              </Tooltip>
-                              <Tooltip
-                                fontSize={'11px'}
-                                label={
-                                  p.verify ? "디스코드 인증유저" : "디스코드 미인증"
-                                }
-                                color={p.verify ? "white" : "red"}
-                              >
+                                label={"아이디 복사"}>
+                                  <Text
+                                    color={"#9A8866"}
+                                    cursor={"pointer"}
+                                    fontWeight={"bold"}
+                                    onClick={handleCopyClipBoard}>
+                                    {p.nickname}
+                                  </Text>
+                                </Tooltip>
                                 <Image
                                   position={"relative"}
-                                  top={"-5px"}
-                                  src={p.verify ? discord : discordBlack}
-                                  width={"15px"}
-                                />
-                              </Tooltip>
+                                  src={p.verify ? discord : null}
+                                  width={"15px"} />
+                              </HStack>
+                              {p.verify && <Text letterSpacing={'-1px'} fontSize={'11px'} color={'gray'}>인증됨</Text>}
                             </VStack>
                           </HStack>
                         </Td>

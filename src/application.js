@@ -1,4 +1,4 @@
-const MODE = 'external';
+const MODE = 'prod';
 
 let API_SERVER = '';
 let WEB_SOCKET = '';
