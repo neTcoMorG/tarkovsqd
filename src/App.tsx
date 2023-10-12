@@ -30,17 +30,16 @@ function App() {
           "  " +
           "[서버] " +
           data.server,
-      });
+      })
+
       notification.onclick = function () {
-        window.open(WEB);
-      };
+        window.open(WEB)
+      }
     }
   };
 
   useEffect(() => {
-    if (window.Notification) {
-      Notification.requestPermission();
-    }
+    if (window.Notification) { Notification.requestPermission() }
 
     let ws: WebSocket = new WebSocket(WEB_SOCKET);
     ws.onopen = () => {
@@ -77,7 +76,7 @@ function App() {
     <Box w={"100%"}>
       <Header />
       <Routes>
-        <Route path={"/"} element={<Main />} />
+        <Route path={"/"}        element={<Main />} />
         <Route path={"/discord"} element={<Callback />} />
         <Route path={"/roadmap"} element={<RoadMap />} />
       </Routes>

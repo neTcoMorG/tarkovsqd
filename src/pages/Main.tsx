@@ -48,6 +48,7 @@ import axios from 'axios';
 import useFilterStore from '../store/useFilterStore';
 import FunctionMenu from '../components/main/FunctionMenu';
 import { BrowserView, MobileView } from 'react-device-detect';
+import SherfaSelector from 'components/main/selector/SherfaSelector';
 
 export default function Main() {
 	
@@ -56,7 +57,7 @@ export default function Main() {
 	const teamModal = useDisclosure();
 	
 	const { posts, initPosts } = usePostStore();
-	const { map, server, type } = useFilterStore();
+	const { map, server, type, isSherfa } = useFilterStore();
 	
 	const openModal = () => {
 		const token = localStorage.getItem('squadObject');
@@ -93,6 +94,9 @@ export default function Main() {
 		if (type !== null) {
 			query.append('type', type);
 		}
+    if (isSherfa === true) {
+      query.append('sherpa', isSherfa.toString())
+    }
 		return query.toString();
 	};
 	
@@ -100,7 +104,7 @@ export default function Main() {
 		axios.get(API_SERVER + '/post?' + searchQueryGenerator()).then((res) => {
 			initPosts(res.data.content);
 		});
-	}, [ map, server, type ]);
+	}, [ map, server, type, isSherfa]);
 	
 	return (
 		<>
@@ -113,8 +117,7 @@ export default function Main() {
 					backgroundSize={ 'cover' }
 					backgroundRepeat={ 'no-repeat' }
 					backgroundAttachment={ 'fixed' }
-					pb={ '400px' }
-				>
+					pb={ '400px' }>
 					<LoginModal
 						onClose={ loginModal.onClose }
 						isOpen={ loginModal.isOpen }
@@ -145,6 +148,7 @@ export default function Main() {
 								<PlayTypeSelector isFilter={ true } />
 								<MapSelector isFilter={ true } />
 								<RegionSelector isFilter={ true } />
+								<SherfaSelector />
 							</HStack>
 							<Button
 								fontSize={ '14px' }
@@ -489,9 +493,10 @@ export default function Main() {
 							</Button>
 						</HStack>
 						<HStack>
-							<HStack>
+							<HStack wrap={'wrap'}>
 								<MapSelector isFilter={ true } />
 								<RegionSelector isFilter={ true } />
+								<SherfaSelector />
 							</HStack>
 						</HStack>
 					</VStack>

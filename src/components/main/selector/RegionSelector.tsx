@@ -19,7 +19,7 @@ export default function RegionSelector({
         color={"#9a8866"}
         borderColor={"#9a8866"}
         borderRadius={0}
-        w={isMobile ? "130px" : "150px"}
+        w={isMobile ? "110px" : "150px"}
         fontSize={isMobile ? '11px' : '14px'}
       >
         <option value={"서버 선택"}>서버 선택</option>
@@ -41,7 +41,7 @@ export default function RegionSelector({
       color={"#9a8866"}
       borderColor={"#9a8866"}
       borderRadius={0}
-      w={isMobile ? "130px" : "150px"}
+      w={isMobile ? "110px" : "150px"}
       fontSize={isMobile ? '11px' : '14px'}
     >
       <option value={"서버 선택"}>서버 선택</option>
