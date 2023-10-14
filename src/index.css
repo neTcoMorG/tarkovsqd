@@ -1,9 +1,4 @@
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
-
-.notosanskr * { 
-  font-family: 'Noto Sans KR', sans-serif;
-}
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
 
 body, html {
   background-color: black;
@@ -12,7 +7,7 @@ body, html {
 }
 
 * {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   color: white;
   box-sizing: border-box;
   margin: 0;

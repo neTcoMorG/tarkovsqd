@@ -68,7 +68,7 @@ export default function Main() {
 		}
 		
 		teamModal.onOpen();
-	};
+	}
 	
 	const handleCopyClipBoard = async (e: any) => {
 		try {
@@ -77,14 +77,16 @@ export default function Main() {
 			toast({
 				title: '디스코드 아이디가 복사되었어요',
 				status: 'info',
-			});
-		} catch (error) {
+			})
+		} 
+		catch (error) {
 			alert('클립보드 복사에 실패하였습니다.');
 		}
-	};
+	}
 	
 	const searchQueryGenerator = () => {
 		const query = new URLSearchParams();
+
 		if (map !== null) {
 			query.append('map', map);
 		}
@@ -94,17 +96,18 @@ export default function Main() {
 		if (type !== null) {
 			query.append('type', type);
 		}
-    if (isSherfa === true) {
-      query.append('sherpa', isSherfa.toString())
-    }
+		if (isSherfa === true) {
+			query.append('sherpa', isSherfa.toString())
+		}
+
 		return query.toString();
-	};
+	}
 	
 	useEffect(() => {
 		axios.get(API_SERVER + '/post?' + searchQueryGenerator()).then((res) => {
 			initPosts(res.data.content);
 		});
-	}, [ map, server, type, isSherfa]);
+	}, [map, server, type, isSherfa]);
 	
 	return (
 		<>
@@ -131,7 +134,8 @@ export default function Main() {
 						        bgColor={ '#171715' }
 						        border={ '1px solid #9A8866' }
 						        mt={ 2 }
-						        mb={ 2 }>
+						        mb={ 2 }
+								zIndex={5}>
 							<Box>
 								<Text fontWeight={ 'bold' }
 								      fontSize={ '18px' }
@@ -163,7 +167,7 @@ export default function Main() {
 								팀원 모집
 							</Button>
 						</HStack>
-						<Box bgColor={ '#171715' } mt={ 6 }>
+						<Box bgColor={ '#171715' } mt={ 3 }>
 							<TableContainer w={ '100%' }>
 								<Table>
 									<Thead bgImage={ strip }>
@@ -172,21 +176,19 @@ export default function Main() {
 												textShadow={ '1px 1px 1px rgba(0,0,0,.004)' }
 												w={ '250px' }
 												fontSize={ '11px' }
-												color={ '#9A8866' }
-											>
+												color={ '#9A8866' }>
 												디스코드
 											</Th>
 											<Th
 												textShadow={ '1px 1px 1px rgba(0,0,0,.004)' }
-												w={ '180px' }
+												w={ '140px' }
 												fontSize={ '11px' }
-												color={ '#9A8866' }
-											>
+												color={ '#9A8866' }>
 												맵
 											</Th>
 											<Th
 												textShadow={ '1px 1px 1px rgba(0,0,0,.004)' }
-												w={ '180px' }
+												w={ '140px' }
 												fontSize={ '11px' }
 												color={ '#9A8866' }
 											>
@@ -194,7 +196,7 @@ export default function Main() {
 											</Th>
 											<Th
 												textShadow={ '1px 1px 1px rgba(0,0,0,.004)' }
-												w={ '200px' }
+												w={ '150px' }
 												color={ '#9A8866' }
 											>
 												서버
@@ -230,12 +232,11 @@ export default function Main() {
 													<Td>
 														<HStack spacing={ 2 }>
 															<Avatar
-																boxShadow={ p.isSherpa ? '0 0 100px rgba(65,61,52,1), 0 0 18px rgba(232,190,107,0.8)' : '' }
+																boxShadow={ p.isSherpa ? '0 0 20px rgba(65,61,52,1), 0 0 10px rgba(232,190,107,0.8)' : '' }
 																size={ 'sm' } src={ p.avatar_url } />
 															<VStack
 																spacing={ 0 }
-																alignItems={ 'flex-start' }
-															>
+																alignItems={ 'flex-start' }>
 																<HStack>
 																	<Tooltip
 																		fontSize={ '12px' }
@@ -258,7 +259,7 @@ export default function Main() {
 																		src={ p.verify ? discord : null }
 																		width={ '15px' }
 																	/>
-																	{ p.isSherpa &&
+																	{ p.isSherpa === true &&
 																		<Tooltip label={ '쉐르파 유저' }
 																		         fontWeight={ 'bold' }
 																		         color={ '#90ee90' }
@@ -580,7 +581,7 @@ export default function Main() {
 																	position={ 'relative' }
 																	src={ p.verify ? discord : null }
 																	width={ '15px' } />
-																{ p.isSherpa &&
+																{ p.isSherpa === true &&
 																	<Tooltip label={ '쉐르파 유저' }
 																	         fontWeight={ 'bold' }
 																	         color={ '#90ee90' }

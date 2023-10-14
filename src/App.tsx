@@ -10,6 +10,7 @@ import useStatusStore from "./store/useStatusStore";
 
 import Header from "components/global/Header";
 import RoadMap from "pages/roadmap/RoadMap";
+import MainRemaster from "components/main/remaster/MainRemaster";
 
 function App() {
   const { setPosts, deletePost } = usePostStore();
@@ -79,6 +80,7 @@ function App() {
         <Route path={"/"}        element={<Main />} />
         <Route path={"/discord"} element={<Callback />} />
         <Route path={"/roadmap"} element={<RoadMap />} />
+        <Route path={'/remaster'} element={<MainRemaster />} />
       </Routes>
     </Box>
   );

@@ -34,10 +34,9 @@ export default function Header() {
                         fontWeight={'bold'}
                         position={'relative'}
                       >
-                        <Badge position={'absolute'} fontWeight={'bold'} fontSize={'3px'} colorScheme="red" top={'-15px'} left={'13px'} cursor={'default'}>NEW</Badge>
                         <a href="https://tarkov.akdong.kr/"
                           target="_blank"
-                          rel="noopener noreferrer">작전 현황</a>
+                          rel="noopener noreferrer">작전현황</a>
                       </Text>
                     </Tooltip>
                     <Text
@@ -54,8 +53,8 @@ export default function Header() {
                 </HStack>
               </HStack>
               <HStack>
-                <Text color={"#9a8866"} letterSpacing={"-1px"} fontSize={"14px"}>
-                  실시간 스쿼드 이용자:{" "}
+                <Text color={"#9a8866"} letterSpacing={"-1px"} fontWeight={'bold'} fontSize={"14px"}>
+                  현재 사용자:{" "}
                 </Text>
                 {online > 0 ? (
                   <Text fontWeight={"bold"} color={"green"} fontSize={"15px"}>
