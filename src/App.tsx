@@ -15,7 +15,7 @@ import MainRemaster from "components/main/remaster/MainRemaster";
 function App() {
   const { setPosts, deletePost } = usePostStore();
   const { setOnline } = useStatusStore();
-
+  
   const sendNoti = (data: Post) => {
     if (Notification.permission !== "granted") {
       return;

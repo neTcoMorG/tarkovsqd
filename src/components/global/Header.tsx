@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 
 import squad from "../../resource/brand/squad.png";
 import { BrowserView, MobileView } from "react-device-detect";
+import signal from './signal.svg'
+
 
 export default function Header() {
   const { online } = useStatusStore();
@@ -52,10 +54,13 @@ export default function Header() {
                   </HStack>
                 </HStack>
               </HStack>
-              <HStack>
-                <Text color={"#9a8866"} letterSpacing={"-1px"} fontWeight={'bold'} fontSize={"14px"}>
-                  현재 사용자:{" "}
-                </Text>
+              <HStack spacing={6}>
+                <HStack spacing={1}>
+                  <Image src={signal} h={'22px'} position={'relative'} top={'-2px'} />
+                  <Text color={"#9a8866"} letterSpacing={"-1px"} fontWeight={'bold'} fontSize={"14px"}>
+                    현재 사용자
+                  </Text>
+                </HStack>
                 {online > 0 ? (
                   <Text fontWeight={"bold"} color={"green"} fontSize={"15px"}>
                     {online}

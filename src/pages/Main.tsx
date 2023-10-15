@@ -49,6 +49,7 @@ import useFilterStore from '../store/useFilterStore';
 import FunctionMenu from '../components/main/FunctionMenu';
 import { BrowserView, MobileView } from 'react-device-detect';
 import SherfaSelector from 'components/main/selector/SherfaSelector';
+import NoticeBox from 'components/main/remaster/NoticeBox';
 
 export default function Main() {
 	
@@ -116,10 +117,6 @@ export default function Main() {
 					w={ '100%' }
 					zIndex={ 1 }
 					bgColor={ 'black' }
-					backgroundImage={ bg }
-					backgroundSize={ 'cover' }
-					backgroundRepeat={ 'no-repeat' }
-					backgroundAttachment={ 'fixed' }
 					pb={ '400px' }>
 					<LoginModal
 						onClose={ loginModal.onClose }
@@ -128,26 +125,8 @@ export default function Main() {
 					/>
 					<TeamCreateModal onClose={ teamModal.onClose } isOpen={ teamModal.isOpen } />
 					<Container maxW={ '1200px' } pt={ 8 }>
-						<VStack alignItems={ 'flex-start' }
-						        w={ '100%' }
-						        p={ '24px' }
-						        bgColor={ '#171715' }
-						        border={ '1px solid #9A8866' }
-						        mt={ 2 }
-						        mb={ 2 }
-								zIndex={5}>
-							<Box>
-								<Text fontWeight={ 'bold' }
-								      fontSize={ '18px' }
-								      color={ 'crimson' }
-								      letterSpacing={ '-1px' }>안내드려요!</Text>
-							</Box>
-							<Text fontSize={ '14px' }>
-								[TIP] 모집 글 리스트의 데이터는 실시간으로 갱신되어 새로고침을 할 필요가 없습니다! <br />
-								[TIP] 사용자 아이디를 클릭하면 디스코드 아이디가 복사됩니다.
-							</Text>
-						</VStack>
-						<HStack justifyContent={ 'space-between' } pt={ 5 }>
+						<NoticeBox p={'0 0 20px 0'}/>
+						<HStack justifyContent={ 'space-between' }>
 							<HStack spacing={ 4 }>
 								<PlayTypeSelector isFilter={ true } />
 								<MapSelector isFilter={ true } />
@@ -162,8 +141,7 @@ export default function Main() {
 								fontWeight={ 'bold' }
 								letterSpacing={ '-1px' }
 								onClick={ openModal }
-								boxShadow={ '0 0 100px rgba(65,61,52,1), 0 0 20px rgba(232,190,107,0.8)' }
-							>
+								boxShadow={ '0 0 100px rgba(65,61,52,1), 0 0 20px rgba(232,190,107,0.8)' }>
 								팀원 모집
 							</Button>
 						</HStack>
