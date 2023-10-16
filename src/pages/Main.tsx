@@ -210,7 +210,7 @@ export default function Main() {
 													<Td>
 														<HStack spacing={ 2 }>
 															<Avatar
-																boxShadow={ p.isSherpa ? '0 0 20px rgba(65,61,52,1), 0 0 10px rgba(232,190,107,0.8)' : '' }
+																// boxShadow={ p.isSherpa ? '0 0 20px rgba(65,61,52,1), 0 0 10px rgba(232,190,107,0.8)' : '' }
 																size={ 'sm' } src={ p.avatar_url } />
 															<VStack
 																spacing={ 0 }
@@ -223,7 +223,7 @@ export default function Main() {
 																		fontWeight={ 'bold' }
 																		label={ '아이디 복사' }>
 																		<Text
-																			color={ p.isSherpa ? '#90ee90' : '#9A8866' }
+																			color={'#9A8866' }
 																			cursor={ 'pointer' }
 																			fontWeight={ 'bold' }
 																			onClick={ handleCopyClipBoard }>
@@ -237,7 +237,7 @@ export default function Main() {
 																		src={ p.verify ? discord : null }
 																		width={ '15px' }
 																	/>
-																	{ p.isSherpa === true &&
+																	{/* { p.isSherpa === true &&
 																		<Tooltip label={ '쉐르파 유저' }
 																		         fontWeight={ 'bold' }
 																		         color={ '#90ee90' }
@@ -251,7 +251,7 @@ export default function Main() {
 																				src={ sherpa }
 																				width={ '15px' }>
 																			</Image>
-																		</Tooltip> }
+																		</Tooltip> } */}
 																</HStack>
 																{ p.verify &&
 																	<Text letterSpacing={ '-1px' } fontSize={ '12px' } color={ 'gray' }>인증됨</Text> }
@@ -270,8 +270,7 @@ export default function Main() {
 																bgColor={ '#9a8866' }
 																color={ '#373128' }
 																fontSize={ '12px' }
-																label={ '파밍 위주 플레이' }
-															>
+																label={ '파밍 위주 플레이' }>
 																<Image
 																	alt="파밍"
 																	ml={ 2 }
