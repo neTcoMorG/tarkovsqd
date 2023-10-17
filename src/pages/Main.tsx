@@ -50,12 +50,15 @@ import FunctionMenu from '../components/main/FunctionMenu';
 import { BrowserView, MobileView } from 'react-device-detect';
 import SherfaSelector from 'components/main/selector/SherfaSelector';
 import NoticeBox from 'components/main/remaster/NoticeBox';
+import Rule from 'components/main/Rule';
 
 export default function Main() {
 	
-	const toast = useToast();
-	const loginModal = useDisclosure();
-	const teamModal = useDisclosure();
+	const toast = useToast()
+
+	const loginModal = useDisclosure()
+	const teamModal  = useDisclosure()
+	const ruleModal  = useDisclosure() 
 	
 	const { posts, initPosts } = usePostStore();
 	const { map, server, type, isSherfa } = useFilterStore();
@@ -105,6 +108,7 @@ export default function Main() {
 	}
 	
 	useEffect(() => {
+		ruleModal.onOpen()
 		axios.get(API_SERVER + '/post?' + searchQueryGenerator()).then((res) => {
 			initPosts(res.data.content);
 		});
@@ -124,6 +128,9 @@ export default function Main() {
 						teamModalOpen={ teamModal.onOpen }
 					/>
 					<TeamCreateModal onClose={ teamModal.onClose } isOpen={ teamModal.isOpen } />
+
+					<Rule />
+
 					<Container maxW={ '1200px' } pt={ 8 }>
 						<NoticeBox p={'0 0 20px 0'}/>
 						<HStack justifyContent={ 'space-between' }>
