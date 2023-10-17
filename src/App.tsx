@@ -14,7 +14,7 @@ import MainRemaster from "components/main/remaster/MainRemaster";
 
 function App() {
   const { setPosts, deletePost } = usePostStore();
-  const { setOnline } = useStatusStore();
+  const { setOnline }            = useStatusStore();
   
   const sendNoti = (data: Post) => {
     if (Notification.permission !== "granted") {
@@ -39,14 +39,15 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    if (window.Notification) { Notification.requestPermission() }
-
-    let ws: WebSocket = new WebSocket(WEB_SOCKET);
+  const initalizeWebSocket = () => {
+    const ws: WebSocket = new WebSocket(WEB_SOCKET);
     ws.onopen = () => {
+      console.log('connected to wss')
       setInterval(() => {
-        ws.send('heartbeat')
-        console.log('send heartbeat')
+        if (ws.readyState === 1) {
+          ws.send('heartbeat')
+          console.log('send heartbeat')
+        }
       }, 30000)      
     }
 
@@ -66,11 +67,18 @@ function App() {
 
     ws.onclose = () => {
       console.log('close wss')
+      setTimeout(() => {
+        console.log('trying reconnected to wss')
+        initalizeWebSocket()
+      }, 200)
     }
 
-    return () => {
-      ws.close();
-    };
+    return ws
+  }
+
+  useEffect(() => {
+    if (window.Notification) { Notification.requestPermission() }
+    initalizeWebSocket()
   }, []);
 
   return (
