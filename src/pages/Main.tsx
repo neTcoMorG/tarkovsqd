@@ -120,7 +120,7 @@ export default function Main() {
 				<Box
 					w={ '100%' }
 					zIndex={ 1 }
-					bgColor={ 'black' }
+					bgColor={ '#0e0e0e' }
 					pb={ '400px' }>
 					<LoginModal
 						onClose={ loginModal.onClose }
@@ -461,7 +461,7 @@ export default function Main() {
 					teamModalOpen={ teamModal.onOpen }
 				/>
 				<TeamCreateModal onClose={ teamModal.onClose } isOpen={ teamModal.isOpen } />
-				<Box bgColor={ 'black' } w={ '100%' } p={ '24px 10px 0 10px' } fontSize={ '11px' }>
+				<Box bgColor={ '#0e0e0e' } w={ '100%' } p={ '24px 10px 0 10px' } fontSize={ '11px' }>
 					<VStack alignItems={ 'flex-start' } w={ '100%' }>
 						<HStack justifyContent={ 'space-between' } w={ '100%' }>
 							<PlayTypeSelector isFilter={ true } />

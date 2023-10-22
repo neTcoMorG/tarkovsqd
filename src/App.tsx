@@ -11,6 +11,7 @@ import useStatusStore from "./store/useStatusStore";
 import Header from "components/global/Header";
 import RoadMap from "pages/roadmap/RoadMap";
 import MainRemaster from "components/main/remaster/MainRemaster";
+import Donate from "pages/donate/Donate";
 
 function App() {
   const { setPosts, deletePost } = usePostStore();
@@ -79,16 +80,17 @@ function App() {
   useEffect(() => {
     if (window.Notification) { Notification.requestPermission() }
     initalizeWebSocket()
-  }, []);
+  }, [])
 
   return (
     <Box w={"100%"}>
       <Header />
       <Routes>
-        <Route path={"/"}        element={<Main />} />
-        <Route path={"/discord"} element={<Callback />} />
-        <Route path={"/roadmap"} element={<RoadMap />} />
+        <Route path={"/"}         element={<Main />}         />
+        <Route path={"/discord"}  element={<Callback />}     />
+        <Route path={"/roadmap"}  element={<RoadMap />}      />
         <Route path={'/remaster'} element={<MainRemaster />} />
+        <Route path={'/donate'}   element={<Donate />}       />
       </Routes>
     </Box>
   );

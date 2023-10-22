@@ -20,8 +20,7 @@ export default function Header() {
           position={"relative"}
           bgColor={"black"}
           boxShadow={"0 0 100px rgba(65,61,52,1), 0 0 6px rgba(232,190,107,0.8)"}
-          zIndex={10}
-        >
+          zIndex={10}>
           <Container maxW={"1200px"} p={"24px 16px 24px 16px"}>
             <HStack spacing={4} w={"100%"} justifyContent={"space-between"}>
               <HStack spacing={"130px"}>
@@ -34,8 +33,7 @@ export default function Header() {
                         color={"#9A8866"}
                         cursor={"pointer"}
                         fontWeight={'bold'}
-                        position={'relative'}
-                      >
+                        position={'relative'}>
                         <a href="https://tarkov.akdong.kr/"
                           target="_blank"
                           rel="noopener noreferrer">작전현황</a>
@@ -47,8 +45,7 @@ export default function Header() {
                       color={"#9A8866"}
                       letterSpacing={"-1px"}
                       cursor={"pointer"}
-                      fontWeight={'bold'}
-                    >
+                      fontWeight={'bold'}>
                       문의사항
                     </Text>
                   </HStack>
