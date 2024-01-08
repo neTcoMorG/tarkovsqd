@@ -91,7 +91,7 @@ export default function RoadMap () {
     }, [])
 
     return (
-        <Box bgColor={'black'} fontFamily={'Noto Sans KR'}>
+        <Box bgColor={'#0e0e0e'} fontFamily={'Noto Sans KR'}>
             <Modal closeOnOverlayClick={false} isOpen={createModal.isOpen} onClose={createModal.onClose} isCentered p={'16px'}>
                 <ModalOverlay 
                     backdropFilter={'auto'}
